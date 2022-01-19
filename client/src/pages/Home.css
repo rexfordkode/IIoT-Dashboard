@@ -1,0 +1,17 @@
+.home{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    text-align: center;
+    flex-wrap: wrap;
+}
+h1{
+    position: relative;
+    font-size: 60px;
+    margin-bottom: 30px;
+}
+p{
+    position: relative;
+    font-size: 40px;
+    top: 0px;
+}
