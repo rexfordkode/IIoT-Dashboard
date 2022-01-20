@@ -1,8 +1,10 @@
-import React from 'react';
-import { Card, Form, Input, Row, Col, Button } from 'antd';
+import React, { useContext } from 'react';
+import { Card, Form, Input, Row, Col, Button, Select } from 'antd';
+import { QosOption } from './index'
 
 const Subscriber = ({ sub, unSub, showUnsub }) => {
   const [form] = Form.useForm();
+  const qosOptions = useContext(QosOption);
 
   const record = {
     topic: 'testtopic/react',
@@ -40,6 +42,7 @@ const Subscriber = ({ sub, unSub, showUnsub }) => {
             label="QoS"
             name="qos"
           >
+            <Select options={qosOptions} />
           </Form.Item>
         </Col>
         <Col span={8} offset={16} style={{ textAlign: 'right' }}>
