@@ -1,12 +1,13 @@
-import React from "react";
+import React from 'react';
+import MqttDashboard from '../components/Hook'
+import './Dashboard.css';
 
 function Dashboard() {
-    return (
-      <div className="dashboard">
-          <h1>Dashboard </h1>
-      </div>
-    );
-  }
-  
-  export default Dashboard;
-  
+  return (
+    <div className="dashboard">
+      <MqttDashboard />
+    </div>
+  );
+}
+
+export default Dashboard;
