@@ -1,5 +1,5 @@
 const mqtt = require('mqtt');
-const mqtt = require('mqtt-packet');
+// const mqtt = require('mqtt-packet');
 
 const host = 'localhost';
 const port = '1883';
