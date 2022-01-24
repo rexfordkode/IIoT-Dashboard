@@ -1,5 +1,5 @@
 const mqtt = require('mqtt');
-const mqtt = require('mqtt-packet');
+// const mqtt = require('mqtt-packet');
 
 const host = 'localhost';
 const port = '1883';
@@ -102,11 +102,11 @@ client.on('connect', () => {
 
   
 
-  // client.publish(topic.test3, 'TTU Newsite', options_pub, (error) => {
-  //   if (error) {
-  //     console.error(error)1500
-  //   }
-  // })
+  client.publish(topic.test3, 'TTU Newsite', options_pub, (error) => {
+    if (error) {
+      console.error(error)1500
+    }
+  })
 
 
 // client.on('message', (topic, payload) => {

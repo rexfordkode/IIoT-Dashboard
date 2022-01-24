@@ -4,13 +4,13 @@ import { Card, Button, Form, Input, Row, Col } from 'antd';
 const Connection = ({ connect, disconnect, connectBtn }) => {
   const [form] = Form.useForm();
   const record = {
-    host: 'broker.emqx.io',
+    host: 'localhost',
     clientId: `mqttjs_ + ${Math.random().toString(16).substr(2, 8)}`,
-    port: 8083,
+    port: 1883
   };
   const onFinish = (values) => {
     const { host, clientId, port, username, password } = values;
-    const url = `ws://${host}:${port}/mqtt`;
+    const url = `mqtt://${host}:${port}`;
     const options = {
       keepalive: 30,
       protocolId: 'MQTT',
@@ -22,7 +22,7 @@ const Connection = ({ connect, disconnect, connectBtn }) => {
         topic: 'WillMsg',
         payload: 'Connection Closed abnormally..!',
         qos: 0,
-        retain: false
+        retain: true
       },
       rejectUnauthorized: false
     };
