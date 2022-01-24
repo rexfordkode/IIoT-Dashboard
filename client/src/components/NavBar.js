@@ -8,7 +8,7 @@ import {IconContext} from 'react-icons'
 
 
 function NavBar() {
-    const [sidebar, setSidebar] = useState(false);
+    const [sidebar, setSidebar] = useState(true);
   
     const showSidebar = () => setSidebar(!sidebar);
   
@@ -17,14 +17,14 @@ function NavBar() {
         <IconContext.Provider value={{ color: '#fff' }}>
           <div className='navbar'>
             <Link to='#' className='menu-bars'>
-              <FaIcons.FaBars onClick={showSidebar} />
+              <FaIcons.FaBars onClick={showSidebar}/>
             </Link>
           </div>
           <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-            <ul className='nav-menu-items' onClick={showSidebar}>
+            <ul className='nav-menu-items'>
               <li className='navbar-toggle'>
                 <Link to='#' className='menu-bars'>
-                  <AiIcons.AiOutlineClose />
+                  <AiIcons.AiOutlineClose  onClick={showSidebar}/>
                 </Link>
               </li>
               {SideBarData.map((item, index) => {

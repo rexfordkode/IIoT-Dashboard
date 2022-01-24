@@ -1,36 +1,9 @@
-import React from 'react';
-import { Card, Button, Form, Input, Row, Col } from 'antd';
+import React, { useState } from "react";
+import { Select, Radio, Card, Button, Form, Input, Row, Col, InputNumber } from "antd";
 
 const Connection = ({ connect, disconnect, connectBtn }) => {
+  const [messageSize, setMessageSize] = useState(1);
   const [form] = Form.useForm();
-  const record = {
-    host: 'broker.emqx.io',
-    clientId: `mqttjs_ + ${Math.random().toString(16).substr(2, 8)}`,
-    port: 8083,
-  };
-  const onFinish = (values) => {
-    const { host, clientId, port, username, password } = values;
-    const url = `ws://${host}:${port}/mqtt`;
-    const options = {
-      keepalive: 30,
-      protocolId: 'MQTT',
-      protocolVersion: 4,
-      clean: true,
-      reconnectPeriod: 1000,
-      connectTimeout: 30 * 1000,
-      will: {
-        topic: 'WillMsg',
-        payload: 'Connection Closed abnormally..!',
-        qos: 0,
-        retain: false
-      },
-      rejectUnauthorized: false
-    };
-    options.clientId = clientId;
-    options.username = username;
-    options.password = password;
-    connect(url, options);
-  };
 
   const handleConnect = () => {
     form.submit();
@@ -45,65 +18,97 @@ const Connection = ({ connect, disconnect, connectBtn }) => {
       layout="vertical"
       name="basic"
       form={form}
-      initialValues={record}
-      onFinish={onFinish}
     >
       <Row gutter={20}>
         <Col span={8}>
-          <Form.Item
-            label="Host"
-            name="host"
-          >
+          <Form.Item label="Name" name="name">
+            <Input />
+          </Form.Item>
+        </Col>
+
+        <Col span={8}>
+          <Form.Item label="Protocol" name="protocol">
+            <Select id="protocol">
+              <option value="mqtt://">mqtt://</option>
+              <option value="mqtts://">mqtts://</option>
+              <option value="ws://">ws://</option>
+              <option value="ws://">ws://</option>
+            </Select>
+          </Form.Item>
+        </Col>
+        <Col span={8}>
+          <Form.Item label="Host" name="host">
             <Input />
           </Form.Item>
         </Col>
         <Col span={8}>
-          <Form.Item
-            label="Port"
-            name="port"
-          >
+          <Form.Item label="Port" name="port">
+            <Input />
+          </Form.Item>
+        </Col>
+
+        <Col span={8}>
+          <Form.Item label="Path" name="path">
+            <Input />
+          </Form.Item>
+        </Col>
+
+        <Col span={8}>
+          <Form.Item label="Client ID" name="clientId">
             <Input />
           </Form.Item>
         </Col>
         <Col span={8}>
-          <Form.Item
-            label="Client ID"
-            name="clientId"
-          >
+          <Form.Item label="Username" name="username">
             <Input />
           </Form.Item>
         </Col>
         <Col span={8}>
-          <Form.Item
-            label="Username"
-            name="username"
-          >
+          <Form.Item label="Password" name="password">
             <Input />
+          </Form.Item>
+        </Col>
+        {/* try */}
+        <Col span={8}>
+          <Form.Item label="message size" name="message_size">
+            <InputNumber
+              min={1}
+              max={1000}
+              defaultValue={messageSize}
+              onChange={(value) => {
+                setMessageSize(value);
+              }}
+            />
           </Form.Item>
         </Col>
         <Col span={8}>
-          <Form.Item
-            label="Password"
-            name="password"
-          >
-            <Input />
-          </Form.Item>
+          <Form.Item label="SSL/TLS" name="ssl_tls">
+          <Radio.Group >
+        <Radio value="true">True</Radio>
+        <Radio value="false">False</Radio>
+      </Radio.Group>         
+       </Form.Item>
         </Col>
+        {/* try */}
       </Row>
     </Form>
-  )
+  );
 
   return (
     <Card
       title="Connection"
       actions={[
-        <Button type="primary" onClick={handleConnect}>{connectBtn}</Button>,
-        <Button danger onClick={handleDisconnect}>Disconnect</Button>
+        <Button type="primary" onClick={handleConnect}>
+          {connectBtn}
+        </Button>,
+        <Button id="danger-button" danger onClick={handleDisconnect}>
+          Disconnect
+        </Button>,
       ]}
     >
       {ConnectionForm}
     </Card>
   );
-}
+};
 
 export default Connection;
