@@ -1,10 +1,11 @@
 {
   "name": "server",
+  "proxy": "http://localhost:4000/",
   "version": "1.0.0",
   "description": "Test Bench Dashboard for IIoT",
   "main": "connection.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -17,8 +18,14 @@
   },
   "homepage": "https://github.com/rexfordkode/IIoT-Dashboard#readme",
   "dependencies": {
+    "-": "^0.0.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "fastparallel": "^2.4.1",
+    "morgan": "^1.10.0",
     "mqtt": "^4.3.4",
     "mqtt-connection": "^4.1.0",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "request": "^2.88.2"
   }
 }
