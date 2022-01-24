@@ -1,7 +1,7 @@
 @import '~antd/dist/antd.css';
 
 .dashboard {
-  background-color: #282c34;
+  background-color: rgba(7, 88, 102, 0.822);
   min-height: 100vh;
   padding: 40px;
   display: flex;
@@ -9,15 +9,19 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .dashboard .ant-card {
   width: 100%;
   max-width: 850px;
   margin-bottom: 20px;
+  background-color: #00f5ccfb;
 }
 
 .ant-form-inline .ant-form-item {
   margin-bottom: 20px;
+}
+
+.ant-list-item-meta-description{
+  color: rgba(19, 3, 3, 0.651);
 }
