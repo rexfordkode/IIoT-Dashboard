@@ -7,7 +7,7 @@ const Subscriber = ({ sub, unSub, showUnsub }) => {
   const qosOptions = useContext(QosOption);
 
   const record = {
-    topic: "testtopic/react",
+    topic: "",
     qos: 0,
   };
 
@@ -31,7 +31,7 @@ const Subscriber = ({ sub, unSub, showUnsub }) => {
       <Row gutter={20}>
         <Col span={12}>
           <Form.Item label="Topic" name="topic">
-            <Input />
+            <Input placeholder='Enter topic' />
           </Form.Item>
         </Col>
         <Col span={12}>
