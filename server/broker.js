@@ -104,15 +104,8 @@ client.on('connect', () => {
 
   client.publish(topic.test3, 'TTU Newsite', options_pub, (error) => {
     if (error) {
-<<<<<<< HEAD:server/broker.js
-      console.error(error)
-=======
-      console.error(error)1500
->>>>
->>> d74c741413c0915b3157f69f088db9d82d3fb051:server/connection.js
-    }
+      console.error(error)}
   })
-
 
 // client.on('message', (topic, payload) => {
 //   console.log('Received Message:', topic, payload.toString())
