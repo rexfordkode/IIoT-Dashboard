@@ -19,6 +19,9 @@
   "homepage": "https://github.com/rexfordkode/IIoT-Dashboard#readme",
   "dependencies": {
     "-": "^0.0.1",
+    "aedes": "^0.46.2",
+    "compute-mode": "^1.0.0",
+    "convert-hrtime": "^5.0.0",
     "cors": "^2.8.5",
     "express": "^4.17.2",
     "fastparallel": "^2.4.1",
@@ -26,6 +29,8 @@
     "mqtt": "^4.3.4",
     "mqtt-connection": "^4.1.0",
     "nodemon": "^2.0.15",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "reusify": "^1.0.4",
+    "uuid": "^8.3.2"
   }
 }
