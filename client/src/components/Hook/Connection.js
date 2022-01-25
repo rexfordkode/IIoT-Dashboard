@@ -22,7 +22,8 @@ const Connection = ({ connect, disconnect, connectBtn }) => {
     });
   };
 
-  const postData = async () => {
+
+  const handleSubmit = async () => {
     try {
       let result = await fetch("http://localhost:4000/", {
         method: "post",
@@ -36,12 +37,7 @@ const Connection = ({ connect, disconnect, connectBtn }) => {
       console.log(result);
     } catch (e) {
       console.log(e);
-    }
-  };
-
-  const handleSubmit = () => {
-    postData();
-    console.log(state);
+    }    console.log(state);
   };
 
   const [form] = Form.useForm();
@@ -56,7 +52,7 @@ const Connection = ({ connect, disconnect, connectBtn }) => {
       <Row gutter={20}>
         <Col span={8}>
           <Form.Item label="Name" name="name">
-            <Input name="name" value={state.name} />
+            <Input required name="name" value={state.name} />
           </Form.Item>
         </Col>
 
@@ -128,7 +124,7 @@ const Connection = ({ connect, disconnect, connectBtn }) => {
     <Card
       title="Connection"
       actions={[
-        <Button type="primary" onClick={handleSubmit}>
+        <Button type="primary" htmlType="submit" onClick={handleSubmit}>
           {connectBtn}
         </Button>,
         <Button id="danger-button" danger>

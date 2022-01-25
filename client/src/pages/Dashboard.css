@@ -9,14 +9,15 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  /* try */
-  position: absolute;
+  position: relative;
   margin-left: 310px;
+  top: 0px;
+  border-radius: 20px;
+  left: -30px;
 }
 
 body {
   background-color: #3333338e;
-  /* try */
 }
 
 .dashboard .ant-card {
@@ -28,7 +29,6 @@ body {
 }
 
 .ant-card-actions {
-  /* background-color:rgba(139, 139, 139, 0.575); */
   border-radius: 30px;
   border: none;
 }
@@ -63,10 +63,6 @@ li.ant-list-item {
   color: white;
 }
 
-/* .ant-select {
-  min-width: 50px;
-  background-color: orange;
-} */
 .ant-select-selection-item {
   padding-right: 0 !important;
 }
@@ -75,8 +71,20 @@ li.ant-list-item {
   font-family: sans-serif;
 }
 
-@media only screen and(max-width: 800px) {
+@media(max-width: 800px) {
   .dashboard {
-    background-color: tomato;
+    top: 200px;
+    width:450px;
+    margin: 0 auto;
+    left: 5px;
   }
 }
+@media(max-width: 450px) {
+  .dashboard{
+     left:-5px;
+    width: 350px;
+    margin: 0 auto;
+  }
+  }
+
+
