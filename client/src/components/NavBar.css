@@ -1,8 +1,10 @@
 .navbar {
-  background-color: #060b26;
+  background-color: rgba(7, 88, 102, 0.822);
   height: 80px;
   display: flex;
+  position: relative;
   justify-content: start;
+  width: 100%;
   align-items: center;
 }
 
@@ -13,13 +15,14 @@
 }
 
 .nav-menu {
-  background-color: #060b26;
+  background-color: #01130281;
   width: 250px;
   height: 100vh;
   display: flex;
   justify-content: center;
   position: fixed;
   top: 0;
+  min-width: 200px;
   left: -100%;
   transition: 850ms;
   z-index: 2;
@@ -60,7 +63,7 @@
 }
 
 .navbar-toggle {
-  background-color: #060b26;
+  background-color: rgba(7, 88, 102, 0.822);
   width: 100%;
   height: 80px;
   display: flex;
@@ -71,3 +74,26 @@
 span {
   margin-left: 16px;
 }
+
+@media only screen and (max-width: 800px) {
+  .nav-menu {
+    background-color: #01130281;
+    position: absolute;
+    top: 0;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-height: 250px;
+    border: none;
+    z-index: 1;
+    border-bottom: 2px solid #2b22206d;
+  }
+
+  .dashboard {
+    position: relative;
+    top: 270px;
+    left: -300px;
+  }
+}
+
+
