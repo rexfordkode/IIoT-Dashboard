@@ -12,14 +12,29 @@
   position: relative;
   margin-left: 310px;
   top: 0px;
-  border-radius: 20px;
-  left: -30px;
+  border-radius: 0px;
+  left: -60px;
 }
 
 body {
   background-color: #3333338e;
 }
-
+.ant-input-number{
+  max-width: 80px;
+}
+#basic_message_size{
+  max-width: 80px;
+}
+.ant-btn-primary span{
+  text-align: left;
+  margin-left: 0;
+}
+#publisher-qos{
+  width: 30%;
+}
+#password{
+-webkit-text-security: disc;
+}
 .dashboard .ant-card {
   width: 100%;
   max-width: 850px;

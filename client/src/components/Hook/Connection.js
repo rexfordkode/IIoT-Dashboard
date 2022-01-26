@@ -3,7 +3,7 @@ import { Radio, Card, Button, Form, Input, Row, Col, InputNumber } from "antd";
 
 const Connection = ({ connect, disconnect, connectBtn }) => {
   const [state, setState] = useState({
-    name: "",
+    name:'',
     protocol: "mqtt://",
     host: "",
     port: "",
@@ -22,8 +22,11 @@ const Connection = ({ connect, disconnect, connectBtn }) => {
     });
   };
 
-
   const handleSubmit = async () => {
+    if(state.name===''||state.host===''||state.clientId===''||state.port===''){
+      console.log('Good catch')
+      alert('All required fields must be filled')
+    }else{
     try {
       let result = await fetch("http://localhost:4000/", {
         method: "post",
@@ -37,7 +40,9 @@ const Connection = ({ connect, disconnect, connectBtn }) => {
       console.log(result);
     } catch (e) {
       console.log(e);
-    }    console.log(state);
+    }
+    console.log(state);
+  }
   };
 
   const [form] = Form.useForm();
@@ -51,8 +56,12 @@ const Connection = ({ connect, disconnect, connectBtn }) => {
     >
       <Row gutter={20}>
         <Col span={8}>
-          <Form.Item label="Name" name="name">
-            <Input required name="name" value={state.name} />
+          <Form.Item
+            label="Name"
+            name="name"
+            required
+          >
+            <Input placeholder="required" required name="name" value={state.name} />
           </Form.Item>
         </Col>
 
@@ -67,13 +76,13 @@ const Connection = ({ connect, disconnect, connectBtn }) => {
           </Form.Item>
         </Col>
         <Col span={8}>
-          <Form.Item label="Host" name="host">
-            <Input name="host" value={state.host} />
+          <Form.Item required label="Host" name="host">
+            <Input placeholder="required" required name="host" value={state.host} />
           </Form.Item>
         </Col>
         <Col span={8}>
-          <Form.Item label="Port" name="port">
-            <Input name="port" value={state.port} />
+          <Form.Item label="Port" required name="port">
+            <Input placeholder="required" required name="port" value={state.port} />
           </Form.Item>
         </Col>
 
@@ -84,22 +93,22 @@ const Connection = ({ connect, disconnect, connectBtn }) => {
         </Col>
 
         <Col span={8}>
-          <Form.Item label="Client ID" name="clientId">
-            <Input name="clientId" value={state.clientId} />
+          <Form.Item label="Client ID" required name="clientId">
+            <Input placeholder="required" name="clientId" value={state.clientId} />
           </Form.Item>
         </Col>
         <Col span={8}>
           <Form.Item label="Username" name="username">
-            <Input name="username" value={state.username} />
+            <Input required name="username" value={state.username} />
           </Form.Item>
         </Col>
         <Col span={8}>
           <Form.Item label="Password" name="password">
-            <Input name="password" value={state.password} />
+            <Input id="password" name="password" value={state.password} />
           </Form.Item>
         </Col>
         <Col span={8}>
-          <Form.Item label="message size" name="message_size">
+          <Form.Item label="msg size" name="message_size">
             <InputNumber
               name="messageSize"
               min={1}
