@@ -2,6 +2,35 @@ import React, { useState } from "react";
 import { Radio, Card, Button, Form, Input, Row, Col, InputNumber } from "antd";
 
 const Connection = ({ connect, disconnect, connectBtn }) => {
+  const [form] = Form.useForm();
+  const record = {
+    host: 'localhost',
+    clientId: `mqttjs_ + ${Math.random().toString(16).substr(2, 8)}`,
+    port: 1883
+  };
+  const onFinish = (values) => {
+    const { host, clientId, port, username, password } = values;
+    const url = `mqtt://${host}:${port}`;
+    const options = {
+      keepalive: 30,
+      protocolId: 'MQTT',
+      protocolVersion: 4,
+      clean: true,
+      reconnectPeriod: 1000,
+      connectTimeout: 30 * 1000,
+      will: {
+        topic: 'WillMsg',
+        payload: 'Connection Closed abnormally..!',
+        qos: 0,
+        retain: true
+      },
+      rejectUnauthorized: false
+    };
+    options.clientId = clientId;
+    options.username = username;
+    options.password = password;
+    connect(url, options);
+  };
   const [state, setState] = useState({
     name:'',
     protocol: "mqtt://",

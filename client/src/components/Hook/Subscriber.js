@@ -30,6 +30,8 @@ const Subscriber = ({ sub, unSub, showUnsub }) => {
     >
       <Row gutter={20}>
         <Col span={12}>
+          <Form.Item label="Topic" name="topic">
+            <Input placeholder='Enter topic' />
           <Form.Item
             label="Topic"
             name="topic"
