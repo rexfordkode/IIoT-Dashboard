@@ -30,8 +30,11 @@ const Subscriber = ({ sub, unSub, showUnsub }) => {
     >
       <Row gutter={20}>
         <Col span={12}>
-          <Form.Item label="Topic" name="topic">
+          <Form.Item
+            label="Topic" 
+            name="topic">
             <Input placeholder='Enter topic' />
+          </Form.Item>
           <Form.Item
             label="Topic"
             name="topic"
@@ -52,7 +55,7 @@ const Subscriber = ({ sub, unSub, showUnsub }) => {
             {  showUnsub ? null :
               <Button type="primary" htmlType="submit">
               Subscribe
-            </Button>}
+              </Button>}
             {
               showUnsub ?
                 <Button type="danger" style={{ marginLeft: '10px' }} onClick={handleUnsub}>

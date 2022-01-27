@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Radio, Card, Button, Form, Input, Row, Col, InputNumber } from "antd";
+// import
 
 const Connection = ({ connect, disconnect, connectBtn }) => {
   const [form] = Form.useForm();
@@ -64,12 +65,15 @@ const Connection = ({ connect, disconnect, connectBtn }) => {
         body: JSON.stringify(state),
       });
       console.log(result);
+      
+      //broker connection
+
     } catch (e) {
       console.log(e);
     }    console.log(state);
   };
 
-  const [form] = Form.useForm();
+
 
   const ConnectionForm = (
     <Form
@@ -85,7 +89,7 @@ const Connection = ({ connect, disconnect, connectBtn }) => {
           </Form.Item>
         </Col>
 
-        <Col span={8}>
+        <Col span={8}>                      
           <Form.Item label="Protocol" name="protocol">
             <select name="protocol" value={state.value}>
               <option value="mqtt://">mqtt://</option>

@@ -20,6 +20,7 @@
   "dependencies": {
     "-": "^0.0.1",
     "aedes": "^0.46.2",
+    "aedes-server-factory": "^0.2.1",
     "compute-mode": "^1.0.0",
     "convert-hrtime": "^5.0.0",
     "cors": "^2.8.5",
@@ -28,6 +29,7 @@
     "morgan": "^1.10.0",
     "mqtt": "^4.3.4",
     "mqtt-connection": "^4.1.0",
+    "net": "^1.0.2",
     "nodemon": "^2.0.15",
     "request": "^2.88.2",
     "reusify": "^1.0.4",
