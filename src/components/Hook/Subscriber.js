@@ -1,19 +1,41 @@
-import React, { useContext } from 'react';
-import { Card, Form, Input, Row, Col, Button, Select } from 'antd';
-import { QosOption } from './index'
-
+import React, { useState } from 'react';
+import { Card, Form, Input, Row, Col, Button } from 'antd';
 const Subscriber = ({ sub, unSub, showUnsub }) => {
   const [form] = Form.useForm();
-  const qosOptions = useContext(QosOption);
+const [state,setState] = useState({
+  topic: '',
+  qos: 0,
+})
 
-  const record = {
-    topic: 'testtopic/react',
-    qos: 0,
-  };
+const handleInputChange = (event) => {
+  setState({
+    ...state,
+    [event.target.name]: event.target.value,
+  });
+};
 
-  const onFinish = (values) => {
-    sub(values);
-  };
+const onFinish = (values) => {
+  sub(values);
+};
+
+
+const handleSubmit = async () => {
+  try {
+    let result = await fetch("http://localhost:4000/", {
+      method: "post",
+      mode: "no-cors",
+      headers: {
+        Accept: "application/json",
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(state),
+    });
+    console.log(result);
+  } catch (e) {
+    console.log(e);
+  }    
+  console.log(state);
+};
 
   const handleUnsub = () => {
     const values = form.getFieldsValue();
@@ -25,7 +47,7 @@ const Subscriber = ({ sub, unSub, showUnsub }) => {
       layout="vertical"
       name="basic"
       form={form}
-      initialValues={record}
+      onChange={handleInputChange}
       onFinish={onFinish}
     >
       <Row gutter={20}>
@@ -34,7 +56,7 @@ const Subscriber = ({ sub, unSub, showUnsub }) => {
             label="Topic"
             name="topic"
           >
-            <Input />
+            <Input name='topic' value={state.topic} />
           </Form.Item>
         </Col>
         <Col span={12}>
@@ -42,13 +64,17 @@ const Subscriber = ({ sub, unSub, showUnsub }) => {
             label="QoS"
             name="qos"
           >
-            <Select options={qosOptions} />
-          </Form.Item>
+            <select id="subscriber-qos" name='qos' value={state.qos}>
+            <option value={0}>0</option>
+            <option value={1}>1</option>
+            <option value={2}>2</option>
+            </select>         
+             </Form.Item>
         </Col>
         <Col span={8} offset={10} style={{ textAlign: 'left' }}>
           <Form.Item>
             {  showUnsub ? null :
-              <Button type="primary" htmlType="submit">
+              <Button type="primary" htmlType="submit" onClick={handleSubmit}>
               Subscribe
             </Button>}
             {

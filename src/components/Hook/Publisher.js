@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Card, Form, Input, Row, Col, Button} from 'antd';
 
 const Publisher = ({ publish }) => {
-  const [form] = Form.useForm();
   const [state,setState] = useState({
       topic : '',
       qos : '0',
@@ -33,17 +32,11 @@ const Publisher = ({ publish }) => {
     }    
     console.log(state);
   };
-  const onFinish = (values) => {
-    publish(values)
-  };
 
   const PublishForm = (
-  
-    <Form
+      <Form
       layout="vertical"
       name="basic"
-      form={form}
-      onFinish={onFinish}
     >
       <Row gutter={20}>
         <Col span={12}>
