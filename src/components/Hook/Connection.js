@@ -45,13 +45,11 @@ const Connection = ({ connect, disconnect, connectBtn }) => {
   }
   };
 
-  const [form] = Form.useForm();
 
   const ConnectionForm = (
     <Form
       layout="vertical"
       name="basic"
-      form={form}
       onChange={handleInputChange}
     >
       <Row gutter={20}>

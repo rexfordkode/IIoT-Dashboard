@@ -40,7 +40,7 @@ body {
 .ant-btn-dangerous span{
   margin-left: 0;
 }
-#publisher-qos{
+#publisher-qos,#subscriber-qos{
   width: 30%;
 }
 #password{
