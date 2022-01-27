@@ -45,7 +45,7 @@ const Subscriber = ({ sub, unSub, showUnsub }) => {
             <Select options={qosOptions} />
           </Form.Item>
         </Col>
-        <Col span={8} offset={16} style={{ textAlign: 'right' }}>
+        <Col span={8} offset={10} style={{ textAlign: 'left' }}>
           <Form.Item>
             {  showUnsub ? null :
               <Button type="primary" htmlType="submit">
@@ -53,7 +53,7 @@ const Subscriber = ({ sub, unSub, showUnsub }) => {
             </Button>}
             {
               showUnsub ?
-                <Button type="danger" style={{ marginLeft: '10px' }} onClick={handleUnsub}>
+                <Button type="danger" onClick={handleUnsub}>
                   Unsubscribe
                 </Button>
                 : null

@@ -11,10 +11,19 @@
   font-size: calc(10px + 2vmin);
   position: relative;
   margin-left: 310px;
-  top: 0px;
+  top: 80px;
   border-radius: 0px;
   left: -60px;
 }
+
+#heading{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  color: white;
+  margin: 0 auto;
+  font-size: 38px;
+  }
 
 body {
   background-color: #3333338e;
@@ -26,7 +35,9 @@ body {
   max-width: 80px;
 }
 .ant-btn-primary span{
-  text-align: left;
+  margin-left: 0;
+}
+.ant-btn-dangerous span{
   margin-left: 0;
 }
 #publisher-qos{
@@ -88,10 +99,11 @@ li.ant-list-item {
 
 @media(max-width: 800px) {
   .dashboard {
-    top: 200px;
+    top: 250px;
     width:450px;
     margin: 0 auto;
     left: 5px;
+    width: 100%;
   }
 }
 @media(max-width: 450px) {
@@ -99,7 +111,6 @@ li.ant-list-item {
      left:-5px;
     width: 350px;
     margin: 0 auto;
+    top:240px;
   }
   }
-
-

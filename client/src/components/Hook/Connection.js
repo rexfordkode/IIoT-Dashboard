@@ -108,7 +108,7 @@ const Connection = ({ connect, disconnect, connectBtn }) => {
           </Form.Item>
         </Col>
         <Col span={8}>
-          <Form.Item label="msg size" name="message_size">
+          <Form.Item label="Msg Size" name="message_size">
             <InputNumber
               name="messageSize"
               min={1}
