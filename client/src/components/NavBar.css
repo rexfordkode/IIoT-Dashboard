@@ -1,5 +1,5 @@
 .navbar {
-  background-color: rgba(7, 88, 102, 0.822);
+  background-color: rgb(7, 88, 102);
   height: 80px;
   display: flex;
   position: fixed;
@@ -98,8 +98,3 @@ span {
     left: -300px;
   }
 }
-
-
-
-
-

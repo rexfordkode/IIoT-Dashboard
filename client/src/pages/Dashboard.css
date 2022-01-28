@@ -26,7 +26,7 @@
   }
 
 body {
-  background-color: #3333338e;
+  background-color: #1d1e1fcb;
 }
 .ant-input-number{
   max-width: 80px;
@@ -40,7 +40,7 @@ body {
 .ant-btn-dangerous span{
   margin-left: 0;
 }
-#publisher-qos{
+#publisher-qos,#subscriber-qos{
   width: 30%;
 }
 #password{
