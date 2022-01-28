@@ -31,6 +31,14 @@ const Subscriber = ({ sub, unSub, showUnsub }) => {
       <Row gutter={20}>
         <Col span={12}>
           <Form.Item label="Topic" name="topic">
+<<<<<<< HEAD
+=======
+            <Input placeholder='Enter topic' />
+          <Form.Item
+            label="Topic"
+            name="topic"
+          >
+>>>>>>> d00e612565f6af663f2370e018f57455e0850329
             <Input />
           </Form.Item>
         </Col>
