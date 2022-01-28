@@ -1,0 +1,90 @@
+@import "~antd/dist/antd.css";
+
+.dashboard {
+  background-color: #3333338e;
+  min-height: 100vh;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  position: relative;
+  margin-left: 310px;
+  top: 0px;
+  border-radius: 20px;
+  left: -30px;
+}
+
+body {
+  background-color: #3333338e;
+}
+
+.dashboard .ant-card {
+  width: 100%;
+  max-width: 850px;
+  margin-bottom: 20px;
+  background-color: white;
+  border-radius: 30px;
+}
+
+.ant-card-actions {
+  border-radius: 30px;
+  border: none;
+}
+
+.ant-card-actions li {
+  border: none;
+}
+
+.ant-form-inline .ant-form-item {
+  margin-bottom: 20px;
+}
+
+.ant-list-item-meta-description {
+  color: rgba(19, 3, 3, 0.651);
+}
+
+li.ant-list-item {
+  border: none;
+  background-color: white;
+}
+
+.ant-card-head-title {
+  font-size: 20px;
+}
+#danger-button {
+  background-color: rgb(255, 0, 0);
+  color: rgb(255, 255, 255);
+}
+
+#danger-button:hover {
+  background: rgba(221, 4, 4, 0.918);
+  color: white;
+}
+
+.ant-select-selection-item {
+  padding-right: 0 !important;
+}
+.ant-input {
+  color: brown;
+  font-family: sans-serif;
+}
+
+@media(max-width: 800px) {
+  .dashboard {
+    top: 200px;
+    width:450px;
+    margin: 0 auto;
+    left: 5px;
+  }
+}
+@media(max-width: 450px) {
+  .dashboard{
+     left:-5px;
+    width: 350px;
+    margin: 0 auto;
+  }
+  }
+
+
