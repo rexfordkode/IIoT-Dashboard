@@ -1,6 +1,6 @@
 
 // To be used with cpuprofilify http://npm.im/cpuprofilify
-const aedes = require('..')()
+const aedes = require('aedes')()
 const server = require('net').createServer(aedes.handle)
 const port = 1883
 

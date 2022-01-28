@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 
 const mqtt = require('mqtt')
-// const convertHrtime = require('convert-hrtime');
+const convertHrtime = require('convert-hrtime');
 const mode = require('compute-mode')
 
 //Variables for connecting to a broker url
@@ -37,8 +37,8 @@ client.on('connect', subscribe)
 client.on('message', publish)
 client.on('message', (topic, payload) => {
   const sentAt = JSON.parse(payload)
-//   const diff = process.hrtime(sentAt)
-//  latencies.push(convertHrtime(diff).ms)
+  const diff = process.hrtime(sentAt)
+ latencies.push(convertHrtime(diff).ms)
 })
 
 client.on('offline', ()=> {
