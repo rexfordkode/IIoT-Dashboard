@@ -4,7 +4,6 @@ import "./Home.css"
 function Home() {
   return (
     <div className="home">
-      <h1>MQTT BROKER</h1>
       <p>
         An MQTT broker is an intermediary entity that enables MQTT clients to
         communicate. Specifically, an MQTT broker receives messages published by

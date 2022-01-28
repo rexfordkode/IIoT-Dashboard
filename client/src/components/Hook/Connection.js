@@ -1,7 +1,9 @@
-import React, { useState } from "react";
-import { Radio, Card, Button, Form, Input, Row, Col, InputNumber } from "antd";
+import React from "react";
+import { Card, Button, Form, Input, Row, Col } from "antd";
 
 const Connection = ({ connect, disconnect, connectBtn }) => {
+<<<<<<< HEAD
+=======
   const [form] = Form.useForm();
   const record = {
     host: 'localhost',
@@ -69,17 +71,94 @@ const Connection = ({ connect, disconnect, connectBtn }) => {
     }    console.log(state);
   };
 
+>>>>>>> d00e612565f6af663f2370e018f57455e0850329
   const [form] = Form.useForm();
+  const record = {
+    host: 'broker.emqx.io',
+    clientId: `mqttjs_ + ${Math.random().toString(16).substr(2, 8)}`,
+    port: 8083,
+  };
+  const onFinish = (values) => {
+    const { host, clientId, port, username, password } = values;
+    const url = `ws://${host}:${port}/mqtt`;
+    const options = {
+      keepalive: 30,
+      protocolId: 'MQTT',
+      protocolVersion: 4,
+      clean: true,
+      reconnectPeriod: 1000,
+      connectTimeout: 30 * 1000,
+      will: {
+        topic: 'WillMsg',
+        payload: 'Connection Closed abnormally..!',
+        qos: 0,
+        retain: false
+      },
+      rejectUnauthorized: false
+    };
+    options.clientId = clientId;
+    options.username = username;
+    options.password = password;
+    connect(url, options);
+  };
+
+  const handleConnect = () => {
+    form.submit();
+  };
+
+  const handleDisconnect = () => {
+    disconnect();
+  };
 
   const ConnectionForm = (
     <Form
       layout="vertical"
       name="basic"
       form={form}
-      onChange={handleInputChange}
+      initialValues={record}
+      onFinish={onFinish}
     >
       <Row gutter={20}>
         <Col span={8}>
+<<<<<<< HEAD
+          <Form.Item
+            label="Host"
+            name="host"
+          >
+            <Input />
+          </Form.Item>
+        </Col>
+        <Col span={8}>
+          <Form.Item
+            label="Port"
+            name="port"
+          >
+            <Input />
+          </Form.Item>
+        </Col>
+        <Col span={8}>
+          <Form.Item
+            label="Client ID"
+            name="clientId"
+          >
+            <Input />
+          </Form.Item>
+        </Col>
+        <Col span={8}>
+          <Form.Item
+            label="Username"
+            name="username"
+          >
+            <Input />
+          </Form.Item>
+        </Col>
+        <Col span={8}>
+          <Form.Item
+            label="Password"
+            name="password"
+          >
+            <Input />
+=======
           <Form.Item label="Name" name="name">
             <Input required name="name" value={state.name} />
           </Form.Item>
@@ -143,27 +222,24 @@ const Connection = ({ connect, disconnect, connectBtn }) => {
               <Radio value="true">True</Radio>
               <Radio value="false">False</Radio>
             </Radio.Group>
+>>>>>>> d00e612565f6af663f2370e018f57455e0850329
           </Form.Item>
         </Col>
       </Row>
     </Form>
-  );
+  )
 
   return (
     <Card
       title="Connection"
       actions={[
-        <Button type="primary" htmlType="submit" onClick={handleSubmit}>
-          {connectBtn}
-        </Button>,
-        <Button id="danger-button" danger>
-          Disconnect
-        </Button>,
+        <Button type="primary" onClick={handleConnect}>{connectBtn}</Button>,
+        <Button id="danger-button" danger onClick={handleDisconnect}>Disconnect</Button>
       ]}
     >
       {ConnectionForm}
     </Card>
   );
-};
+}
 
 export default Connection;

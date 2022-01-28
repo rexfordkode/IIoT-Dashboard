@@ -11,15 +11,51 @@
   font-size: calc(10px + 2vmin);
   position: relative;
   margin-left: 310px;
+<<<<<<< HEAD
+  top: 80px;
+  border-radius: 0px;
+  left: -60px;
+=======
   top: 0px;
   border-radius: 20px;
   left: -30px;
+>>>>>>> d00e612565f6af663f2370e018f57455e0850329
 }
+
+#heading{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  color: white;
+  margin: 0 auto;
+  font-size: 38px;
+  }
 
 body {
-  background-color: #3333338e;
+  background-color: #1d1e1fcb;
 }
+<<<<<<< HEAD
+.ant-input-number{
+  max-width: 80px;
+}
+#basic_message_size{
+  max-width: 80px;
+}
+.ant-btn-primary span{
+  margin-left: 0;
+}
+.ant-btn-dangerous span{
+  margin-left: 0;
+}
+#publisher-qos,#subscriber-qos{
+  width: 30%;
+}
+#password{
+-webkit-text-security: disc;
+}
+=======
 
+>>>>>>> d00e612565f6af663f2370e018f57455e0850329
 .dashboard .ant-card {
   width: 100%;
   max-width: 850px;
@@ -73,10 +109,11 @@ li.ant-list-item {
 
 @media(max-width: 800px) {
   .dashboard {
-    top: 200px;
+    top: 250px;
     width:450px;
     margin: 0 auto;
     left: 5px;
+    width: 100%;
   }
 }
 @media(max-width: 450px) {
@@ -84,7 +121,6 @@ li.ant-list-item {
      left:-5px;
     width: 350px;
     margin: 0 auto;
+    top:240px;
   }
   }
-
-
