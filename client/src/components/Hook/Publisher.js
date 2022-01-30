@@ -5,6 +5,13 @@ import { QosOption } from './index'
 const Publisher = ({ publish }) => {
   const [form] = Form.useForm();
   const qosOptions = useContext(QosOption);
+  const [data, setData] = React.useState(null )//This code is for testing api from server)
+
+  React.useEffect(() =>{
+    fetch("/api")
+    .then((res) => res.json())
+    .then((data) => setData(data.message))
+  },[]);
 
   const record = {
     topic: 'testtopic/react',
@@ -32,6 +39,7 @@ const Publisher = ({ publish }) => {
             <Input />
           </Form.Item>
         </Col>
+
         <Col span={12}>
           <Form.Item
             label="QoS"
@@ -40,6 +48,7 @@ const Publisher = ({ publish }) => {
             <Select options={qosOptions} />
           </Form.Item>
         </Col>
+
         <Col span={24}>
           <Form.Item
             label="Payload"
@@ -47,11 +56,43 @@ const Publisher = ({ publish }) => {
           >
             <Input.TextArea />
           </Form.Item>
+          
         </Col>
+
         <Col span={8} offset={16} style={{ textAlign: 'right' }}>
           <Form.Item>
             <Button type="primary" htmlType="submit">
               Publish
+            </Button>
+          </Form.Item>
+        </Col>
+      </Row>
+
+      {/* ================================= */}
+      <Row gutter={20}>
+        <Col span={12}>
+          <Form.Item
+            label="Name"
+            name="name"
+          >
+            <Input />
+          </Form.Item>
+        </Col>
+
+        <Col span={24}>
+          <Form.Item
+            label="Poem"
+            name="poem"
+          >
+            <Input.TextArea />
+          </Form.Item>
+          
+        </Col>
+        
+        <Col span={8} offset={16} style={{ textAlign: 'right' }}>
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              Test
             </Button>
           </Form.Item>
         </Col>
@@ -64,6 +105,7 @@ const Publisher = ({ publish }) => {
       title="Publisher"
     >
       {PublishForm}
+      {!data ? 'LOADING...': data}
     </Card>
   );
 }

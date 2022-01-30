@@ -1,23 +1,26 @@
-
-// To be used with cpuprofilify http://npm.im/cpuprofilify
-const aedes = require('aedes')()
-const server = require('net').createServer(aedes.handle)
-const port = 1883
-
-server.listen(port, function () {
-  console.error('server listening on port', port, 'pid', process.pid)
+let aedes = require('aedes')({
+    mq: require('mqemitter-redis')()
 })
 
-aedes.on('clientError', function (client, err) {
-  console.error('client error', client.id, err.message)
+
+let server = require('aedes-server-factory').createServer(aedes.handle,{
+    ws: true,
+})
+let port = 1884
+server.listen(port,   ()=> {
+    console.log(process.pid, 'server listening on port', process.env.port)
 })
 
-// Cleanly shut down process on SIGTERM to ensure that perf-<pid>.map gets flushed
-process.on('SIGINT', onSIGINT)
+aedes.on('clientError',   (client, err) => {
+    console.log(process.pid,' client error ', client.id, err.message)
+})
 
-function onSIGINT () {
-  // IMPORTANT to log on stderr, to not clutter stdout which is purely for data, i.e. dtrace stacks
-  console.error('Caught SIGTERM, shutting down.')
-  server.close()
-  process.exit(0)
-}
+aedes.on('publish',   (packet, client) =>{
+    //console.log(packet, ' message from client ', client)
+})
+aedes.on('client',  (client) =>{
+    console.log(process.pid, ' new client ', client.id)
+})
+aedes.on('clientDisconnect',   (client) =>{
+    console.log(process.pid, ' Disconnect client ', client.id)
+})
