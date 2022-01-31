@@ -8,7 +8,7 @@ const app = express();
 
 
 server.listen(port, () =>{
-    console.log('Server started and listening on port ', port);
+    console.log('Server started and listening on port ', port, 'pid', process.pid);
   }); 
   aedes.authenticate = (client, username, password, callback) => {
       password = Buffer.from(password, 'base64').toString();
@@ -20,14 +20,20 @@ server.listen(port, () =>{
       return callback(error, false)
   }
 
-  // create a GET route
+//   // create a GET route
 app.get('/Testbench/server', (req, res) => { //Line 9
-    res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' }); //Line 10
+    aedes.on('client',  (client) => {
+        res.send({ express: 'Connected' }); 
+        console.log(`Client connected with client  ${(client ? client.id : client)} connected to broker ${aedes.id}`)
+    })
+    
+
   }); 
 
   app.listen(port, ()=> console.log(`Listening on port ${port}`));
 
 
+  
 // let server = require('aedes-server-factory').createServer(aedes.handle,{
 //     ws: true,
 // })

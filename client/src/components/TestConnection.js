@@ -27,37 +27,83 @@ export const TestConnection = () => {
   };
 
 
-  const mqttConnect = (host, mqttOption) => {
-    setConnectStatus("Connecting");
-    setClient(mqtt.connect(host, mqttOption));
-  };
-  const onFinish = (values) => {
+//   const mqttConnect = (host, mqttOption) => {
+//     setConnectStatus("Connecting");
+//     setClient(mqtt.connect(host, mqttOption));
+//   };
+//   const onFinish = (values) => {
     
-    const { name, host, clientId, port } = values;
-    if(name===''||host===''||clientId===''||port===''){
-      console.log('Good catch')
-      alert('All required fields must be filled')
-    }else{
-    const url = `ws://${host}:${port}/mqtt`;
-    const options = {
-      keepalive: 30,
-      protocolId: "MQTT",
-      protocolVersion: 4,
-      clean: true,
-      reconnectPeriod: 1000,
-      connectTimeout: 30 * 1000,
-      will: {
-        topic: "WillMsg",
-        payload: "Connection Closed abnormally..!",
-        qos: 0,
-        retain: false,
-      },
-      rejectUnauthorized: false,
-    };
-    mqttConnect(url, options);
-    console.log(values)
+//     const { name, host, clientId, port } = values;
+//     if(name===''||host===''||clientId===''||port===''){
+//       console.log('Good catch')
+//       alert('All required fields must be filled')
+//     }else{
+//     const url = `ws://${host}:${port}/mqtt`;
+//     const options = {
+//       keepalive: 30,
+//       protocolId: "MQTT",
+//       protocolVersion: 4,
+//       clean: true,
+//       reconnectPeriod: 1000,
+//       connectTimeout: 30 * 1000,
+//       will: {
+//         topic: "WillMsg",
+//         payload: "Connection Closed abnormally..!",
+//         qos: 0,
+//         retain: false,
+//       },
+//       rejectUnauthorized: false,
+//     };
+//     mqttConnect(url, options);
+//     console.log(values)
+//   }
+// }
+
+const [client, setClient] = useState(null);
+const [connectStatus, setConnectStatus] = useState("Test Connection");
+
+useEffect(() => {
+  if (client) {
+    client.on("connect", () => {
+      setConnectStatus("Connected");
+    });
+    client.on("error", (err) => {
+      console.error("Connection error: ", err);
+      client.end();
+    });
+    client.on("reconnect", () => {
+      setConnectStatus("Reconnecting");
+    });
   }
-}
+}, [client]);
+
+const mqttDisconnect = () => {
+  if (client) {
+    client.end(() => {
+      setConnectStatus("Test Connection");
+    });
+  }
+};
+
+//This handleConnect send data to the server for connection
+const handleConnect = (event) => {
+  // form.submit();
+  fetch('http://localhost:5000/Testbench/server',{
+      method: 'POST',
+      //Converting the React state to a JSON and send it as the POST body
+      body: JSON.stringify(this.state)
+  }).then((response) =>{
+      console.log(response)
+      return resonse.json();
+  });
+  //Convert the React state to JSON
+
+  event.preventDefault();
+
+};
+  const handleDisconnect = () => {
+  mqttDisconnect();
+};
 
   const ConnectionForm = (
     <Form
@@ -65,7 +111,7 @@ export const TestConnection = () => {
       name="basic"
       form={form}
       initialValues={record}
-      onFinish={onFinish}
+    //   onFinish={onFinish}
     >
       <Row gutter={20}>
         <Col span={8}>
@@ -186,40 +232,6 @@ export const TestConnection = () => {
       </Row>
     </Form>
   );
-
-  const [client, setClient] = useState(null);
-  const [connectStatus, setConnectStatus] = useState("Test Connection");
-
-  useEffect(() => {
-    if (client) {
-      client.on("connect", () => {
-        setConnectStatus("Connected");
-      });
-      client.on("error", (err) => {
-        console.error("Connection error: ", err);
-        client.end();
-      });
-      client.on("reconnect", () => {
-        setConnectStatus("Reconnecting");
-      });
-    }
-  }, [client]);
-
-  const mqttDisconnect = () => {
-    if (client) {
-      client.end(() => {
-        setConnectStatus("Test Connection");
-      });
-    }
-  };
-
-  const handleConnect = () => {
-    form.submit();
-    // console.log(form.getFieldsValue())
-  };
-    const handleDisconnect = () => {
-    mqttDisconnect();
-  };
 
   return (
     <div className="testconnection">
