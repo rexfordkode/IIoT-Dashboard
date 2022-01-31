@@ -58,12 +58,8 @@ const Publisher = ({ publish }) => {
           </Form.Item>
           
         </Col>
-<<<<<<< HEAD
 
         <Col span={8} offset={16} style={{ textAlign: 'right' }}>
-=======
-        <Col span={8} offset={5} style={{ textAlign: 'right' }}>
->>>>>>> 275cfae9441d035eff08747c9f598d22927efcee
           <Form.Item>
             <Button type="primary" htmlType="submit">
               Publish

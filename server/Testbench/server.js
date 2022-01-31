@@ -4,14 +4,15 @@ const server = require('aedes-server-factory').createServer(aedes, {
   ws: true,
 });
 const brokerPort = 1883;
-
-const port = process.env.PORT || 5005;
+// const ws = require('websocket-stream')
+const port = process.env.PORT || 5000;
 const app = express(); 
 
 
-server.listen(port, () =>{
+server.listen(brokerPort, () =>{
     console.log('Broker Server started and connected on port ', brokerPort, 'pid', process.pid);
   }); 
+
   aedes.authenticate = (client, username, password, callback) => {
       password = Buffer.from(password, 'base64').toString();
       if (username === 'username' && password === 'password') {
@@ -29,8 +30,12 @@ app.get('/Testbench/server', (req, res) => { //Line 9
         console.log(`Client connected with client  ${(client ? client.id : client)} connected to broker ${aedes.id}`)
     })
     
-
   }); 
+  app.get('/Testbench/testpub',(req, res) =>{
+    aedes.publish('publish',(client) =>{
+      
+    })
+  })
 
   app.listen(port, ()=> console.log(`Listening on port ${port}`));
 

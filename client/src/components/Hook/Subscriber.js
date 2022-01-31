@@ -30,19 +30,7 @@ const Subscriber = ({ sub, unSub, showUnsub }) => {
     >
       <Row gutter={20}>
         <Col span={12}>
-<<<<<<< HEAD
-          <Form.Item
-            label="Topic" 
-            name="topic">
-            <Input placeholder='Enter topic' />
-          </Form.Item>
-          <Form.Item
-            label="Topic"
-            name="topic"
-          >
-=======
           <Form.Item label="Topic" name="topic">
->>>>>>> 275cfae9441d035eff08747c9f598d22927efcee
             <Input />
           </Form.Item>
         </Col>
@@ -55,17 +43,6 @@ const Subscriber = ({ sub, unSub, showUnsub }) => {
           <Form.Item>
             {showUnsub ? null : (
               <Button type="primary" htmlType="submit">
-<<<<<<< HEAD
-              Subscribe
-              </Button>}
-            {
-              showUnsub ?
-                <Button type="danger" style={{ marginLeft: '10px' }} onClick={handleUnsub}>
-                  Unsubscribe
-                </Button>
-                : null
-            }
-=======
                 Subscribe
               </Button>
             )}
@@ -78,7 +55,6 @@ const Subscriber = ({ sub, unSub, showUnsub }) => {
                 Unsubscribe
               </Button>
             ) : null}
->>>>>>> 275cfae9441d035eff08747c9f598d22927efcee
           </Form.Item>
         </Col>
       </Row>
