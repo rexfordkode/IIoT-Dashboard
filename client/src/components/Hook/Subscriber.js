@@ -48,6 +48,7 @@ const Subscriber = ({ sub, unSub, showUnsub }) => {
             )}
             {showUnsub ? (
               <Button
+                id="danger-button2"
                 type="danger"
                 style={{ marginLeft: "10px" }}
                 onClick={handleUnsub}
