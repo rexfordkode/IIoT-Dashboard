@@ -160,21 +160,21 @@ export const TestConnection = () => {
             </Select>
           </Form.Item>
         </Col>
-        <Col span={4}>
+        <Col span={6}>
           <Form.Item label="Publishers" name="publishers">
             <InputNumber
               name="publishers"
              />
           </Form.Item>
         </Col>
-        <Col span={4}>
+        <Col span={7}>
           <Form.Item label="Subsscribers" name="subscribers">
             <InputNumber
               name="subscribers"
               />
           </Form.Item>
         </Col>
-        <Col span={4}>
+        <Col span={8}>
           <Form.Item label="Time Interval" name="time_interval">
             <InputNumber
               name="timeInterval"

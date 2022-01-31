@@ -94,13 +94,14 @@ li.ant-list-item {
 
 @media(max-width: 800px) {
   .testconnection {
-    top: 250px;
+    top: 350px;
     width:450px;
     margin: 0 auto;
     left: 5px;
     width: 100%;
   }
 }
+
 @media(max-width: 450px) {
   .testconnection{
      left:-5px;

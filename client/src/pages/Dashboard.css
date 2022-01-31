@@ -88,6 +88,17 @@ li.ant-list-item {
   background: rgba(221, 4, 4, 0.918);
   color: white;
 }
+#danger-button2{
+  background: rgba(221, 4, 4, 0.918);
+  color: white;
+padding-left: 0;
+}
+
+#danger-button2:hover{
+  background: rgba(179, 11, 11, 0.432);
+  color: rgb(255, 0, 0);
+padding-left: 0;
+}
 
 .ant-select-selection-item {
   padding-right: 0 !important;
