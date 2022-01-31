@@ -3,12 +3,14 @@ const aedes = require('aedes')();
 const server = require('aedes-server-factory').createServer(aedes, {
   ws: true,
 });
-const port = 1883;
+const brokerPort = 1883;
+
+const port = process.env.PORT || 5005;
 const app = express(); 
 
 
 server.listen(port, () =>{
-    console.log('Server started and listening on port ', port, 'pid', process.pid);
+    console.log('Broker Server started and connected on port ', brokerPort, 'pid', process.pid);
   }); 
   aedes.authenticate = (client, username, password, callback) => {
       password = Buffer.from(password, 'base64').toString();
