@@ -3,8 +3,8 @@ import  './App.css';
 import NavBar from './components/NavBar';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import Home from './pages/Home';
+import Reports from './pages/Reports';
 import Dashboard from './pages/Dashboard';
-import {TestConnection} from './pages/TestConnection';
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
       <Switch>
         <Route path= '/' exact component={Home} />
         <Route path= '/dashboard' component={Dashboard} />
-        <Route path= '/testconnection' component={TestConnection} />
+        <Route path= '/reports' component={Reports} />
       </Switch>
       </Router>
     </>
