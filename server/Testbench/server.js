@@ -9,7 +9,7 @@ const port = process.env.PORT || 5005;
 const app = express(); 
 
 
-server.listen(port, () =>{
+server.listen(brokerPort, () =>{
     console.log('Broker Server started and connected on port ', brokerPort, 'pid', process.pid);
   }); 
   aedes.authenticate = (client, username, password, callback) => {
