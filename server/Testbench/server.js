@@ -24,10 +24,10 @@ server.listen(brokerPort, () =>{
   }
 
 //   // create a GET route
-app.get('/Testbench/server', (req, res) => { //Line 9
+app.post('/Testbench/server', (req, res) => { //Line 9
     aedes.on('client',  (client) => {
         res.send({ express: 'Connected' }); 
-        console.log(`Client connected with client  ${(client ? client.id : client)} connected to broker ${aedes.id}`)
+        // console.log(`Client connected with client  ${(client ? client.id : client)} connected to broker ${aedes.id}`)
     })
     
   }); 

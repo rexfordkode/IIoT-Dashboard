@@ -1,16 +1,16 @@
 // const express = require('express');
-import express from "express"
-const cors = require('cors');
-const app = express ();
-const router = express.Router();
+// import express from "express"
+// const cors = require('cors');
+// const app = express ();
+// const router = express.Router();
 
-import {getConn, createPub} from "../controller/conn"
-
-
+const  loansController = require("../controller/conn")
 
 
-router.get('/Connection', getConn);
-router.post('/Publication', createPub);
+
+
+router.get('/connection', Controller.getConn);
+router.post('/publication', Controller.createPub);
 
 
 

@@ -7,6 +7,7 @@ import './TestConnection.css'
 export const TestConnection = () => {
   const [form] = Form.useForm();
   const { Option } = Select;
+  const {connRes} = conres;
 
   const record = {
     host: "broker.emqx.io",
@@ -25,6 +26,16 @@ export const TestConnection = () => {
     time_interval: 1,
 
   };
+
+  const handleSubmit = async () => {
+    await fetch('http://localhost:5000/Testbench/server', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(record)
+    }).then((res) =>{
+
+    })
+  }
 
 
 //   const mqttConnect = (host, mqttOption) => {
@@ -111,6 +122,7 @@ const handleConnect = (event) => {
       name="basic"
       form={form}
       initialValues={record}
+      onSubmit={handleSubmit}
     //   onFinish={onFinish}
     >
       <Row gutter={20}>

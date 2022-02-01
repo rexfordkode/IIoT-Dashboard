@@ -30,6 +30,7 @@
     "express": "^4.17.2",
     "fastparallel": "^2.4.1",
     "morgan": "^1.10.0",
+    "mosca": "^2.8.3",
     "mqemitter-redis": "^4.2.0",
     "mqtt": "^4.3.4",
     "mqtt-connection": "^4.1.0",
