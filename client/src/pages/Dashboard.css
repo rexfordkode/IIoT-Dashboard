@@ -1,7 +1,7 @@
 @import "~antd/dist/antd.css";
 
 .dashboard {
-  background-color: #3333338e;
+  background-color: #333333;
   min-height: 100vh;
   padding: 40px;
   display: flex;
@@ -16,6 +16,10 @@
   left: -60px;
 }
 
+body{
+  background-color: #333333;
+}
+
 #heading{
   display: flex;
   flex-direction: column;
@@ -25,9 +29,6 @@
   font-size: 38px;
   }
 
-body {
-  background-color: #1d1e1fcb;
-}
 .ant-input-number{
   max-width: 80px;
 }
@@ -82,30 +83,52 @@ li.ant-list-item {
 #danger-button {
   background-color: rgb(255, 0, 0);
   color: rgb(255, 255, 255);
+  position: relative;
+  margin-left: 0px;
 }
-
+.reports{
+  width: 100%;
+  max-width: 850px;
+  position: relative;
+  top: 30px;
+}
 #danger-button:hover {
-  background: rgba(221, 4, 4, 0.918);
+  background:rgba(197, 31, 31, 0.795) !important;
   color: white;
 }
 #danger-button2{
-  background: rgba(221, 4, 4, 0.918);
+  background-color: rgb(241, 0, 0);
   color: white;
 padding-left: 0;
 }
 
 #danger-button2:hover{
-  background: rgba(179, 11, 11, 0.432);
+  background: rgba(235, 170, 170, 0.822);
   color: rgb(255, 0, 0);
 padding-left: 0;
 }
+#start-button{
+  background-color: green;
+  color: #fff;
+  padding-left: 0;
+}
 
+#start-button:hover{
+  color: #1e2222;
+  background: lightblue;
+}
 .ant-select-selection-item {
   padding-right: 0 !important;
 }
 .ant-input {
   color: brown;
   font-family: sans-serif;
+}
+
+@media(max-width:1000px){
+#danger-button{
+  margin-left: 40px;
+}
 }
 
 @media(max-width: 800px) {

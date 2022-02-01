@@ -7,12 +7,12 @@
   font-family: 'PT Serif', sans-serif;
 }
 
-.home,
-.reports,
-.testconnection{
+
+
+/* .home{
   display: flex;
   height: 90vh;
   align-items: center;
   justify-content: center;
   font-size: 2rem;
-}
+} */

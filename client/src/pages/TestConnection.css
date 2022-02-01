@@ -20,9 +20,6 @@
   padding: 0 !important;
 }
 
-body {
-  background-color: #1d1e1fcb;
-}
 .ant-input-number{
   max-width: 80px;
 }
@@ -102,10 +99,10 @@ li.ant-list-item {
   }
 }
 
-@media(max-width: 450px) {
+@media(max-width: 550px) {
   .testconnection{
      left:-5px;
-    width: 350px;
+    width: 500px;
     margin: 0 auto;
     top:240px;
   }

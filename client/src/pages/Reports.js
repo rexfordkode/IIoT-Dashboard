@@ -1,9 +1,19 @@
 import React from 'react';
+import { Card, List } from 'antd';
 
-function Reports() {
+const Reports = () => {
+
+
   return (
     <div className='reports'>
-      <h1>Reports</h1>
+    <Card
+      title="Reports"
+    >
+      <List
+        size="small"
+        bordered
+        />
+    </Card>
     </div>
   );
 }
