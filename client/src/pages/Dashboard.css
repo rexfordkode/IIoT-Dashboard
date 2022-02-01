@@ -1,7 +1,7 @@
 @import "~antd/dist/antd.css";
 
 .dashboard {
-  background-color: #3333338e;
+  background-color: #333333;
   min-height: 100vh;
   padding: 40px;
   display: flex;
@@ -11,14 +11,24 @@
   font-size: calc(10px + 2vmin);
   position: relative;
   margin-left: 310px;
-  top: 0px;
+  top: 80px;
   border-radius: 0px;
   left: -60px;
 }
 
-body {
-  background-color: #3333338e;
+body{
+  background-color: #333333;
 }
+
+#heading{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  color: white;
+  margin: 0 auto;
+  font-size: 38px;
+  }
+
 .ant-input-number{
   max-width: 80px;
 }
@@ -26,10 +36,12 @@ body {
   max-width: 80px;
 }
 .ant-btn-primary span{
-  text-align: left;
   margin-left: 0;
 }
-#publisher-qos{
+.ant-btn-dangerous span{
+  margin-left: 0;
+}
+#publisher-qos,#subscriber-qos{
   width: 30%;
 }
 #password{
@@ -71,13 +83,40 @@ li.ant-list-item {
 #danger-button {
   background-color: rgb(255, 0, 0);
   color: rgb(255, 255, 255);
+  position: relative;
+  margin-left: 0px;
 }
-
+.reports{
+  width: 100%;
+  max-width: 850px;
+  position: relative;
+  top: 30px;
+}
 #danger-button:hover {
-  background: rgba(221, 4, 4, 0.918);
+  background:rgba(197, 31, 31, 0.795) !important;
   color: white;
 }
+#danger-button2{
+  background-color: rgb(241, 0, 0);
+  color: white;
+padding-left: 0;
+}
 
+#danger-button2:hover{
+  background: rgba(235, 170, 170, 0.822);
+  color: rgb(255, 0, 0);
+padding-left: 0;
+}
+#start-button{
+  background-color: green;
+  color: #fff;
+  padding-left: 0;
+}
+
+#start-button:hover{
+  color: #1e2222;
+  background: lightblue;
+}
 .ant-select-selection-item {
   padding-right: 0 !important;
 }
@@ -86,12 +125,19 @@ li.ant-list-item {
   font-family: sans-serif;
 }
 
+@media(max-width:1000px){
+#danger-button{
+  margin-left: 40px;
+}
+}
+
 @media(max-width: 800px) {
   .dashboard {
-    top: 200px;
+    top: 250px;
     width:450px;
     margin: 0 auto;
     left: 5px;
+    width: 100%;
   }
 }
 @media(max-width: 450px) {
@@ -99,7 +145,6 @@ li.ant-list-item {
      left:-5px;
     width: 350px;
     margin: 0 auto;
+    top:240px;
   }
   }
-
-

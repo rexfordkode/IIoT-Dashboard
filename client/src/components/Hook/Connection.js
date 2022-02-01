@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import { Radio, Card, Button, Form, Input, Row, Col, InputNumber } from "antd";
+import React from "react";
+import { Card, Button, Form, Input, Row, Col } from "antd";
 
 const Connection = ({ connect, disconnect, connectBtn }) => {
   const [form] = Form.useForm();
   const record = {
-    host: 'localhost',
+    host: 'broker.emqx.io',
     clientId: `mqttjs_ + ${Math.random().toString(16).substr(2, 8)}`,
-    port: 1883
+    port: 8083,
   };
   const onFinish = (values) => {
     const { host, clientId, port, username, password } = values;
-    const url = `mqtt://${host}:${port}`;
+    const url = `ws://${host}:${port}/mqtt`;
     const options = {
       keepalive: 30,
       protocolId: 'MQTT',
@@ -22,7 +22,7 @@ const Connection = ({ connect, disconnect, connectBtn }) => {
         topic: 'WillMsg',
         payload: 'Connection Closed abnormally..!',
         qos: 0,
-        retain: true
+        retain: false
       },
       rejectUnauthorized: false
     };
@@ -31,148 +31,79 @@ const Connection = ({ connect, disconnect, connectBtn }) => {
     options.password = password;
     connect(url, options);
   };
-  const [state, setState] = useState({
-    name:'',
-    protocol: "mqtt://",
-    host: "",
-    port: "",
-    path: "",
-    clientId: "",
-    username: "",
-    password: "",
-    messageSize: 1,
-    ssl_tls: "",
-  });
 
-  const handleInputChange = (event) => {
-    setState({
-      ...state,
-      [event.target.name]: event.target.value,
-    });
+  const handleConnect = () => {
+    form.submit();
   };
 
-  const handleSubmit = async () => {
-    if(state.name===''||state.host===''||state.clientId===''||state.port===''){
-      console.log('Good catch')
-      alert('All required fields must be filled')
-    }else{
-    try {
-      let result = await fetch("http://localhost:4000/", {
-        method: "post",
-        mode: "no-cors",
-        headers: {
-          Accept: "application/json",
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(state),
-      });
-      console.log(result);
-    } catch (e) {
-      console.log(e);
-    }
-    console.log(state);
-  }
+  const handleDisconnect = () => {
+    disconnect();
   };
-
-  const [form] = Form.useForm();
 
   const ConnectionForm = (
     <Form
       layout="vertical"
       name="basic"
       form={form}
-      onChange={handleInputChange}
+      initialValues={record}
+      onFinish={onFinish}
     >
       <Row gutter={20}>
         <Col span={8}>
           <Form.Item
-            label="Name"
-            name="name"
-            required
+            label="Host"
+            name="host"
           >
-            <Input placeholder="required" required name="name" value={state.name} />
-          </Form.Item>
-        </Col>
-
-        <Col span={8}>
-          <Form.Item label="Protocol" name="protocol">
-            <select name="protocol" value={state.value}>
-              <option value="mqtt://">mqtt://</option>
-              <option value="mqtts://">mqtts://</option>
-              <option value="ws://">ws://</option>
-              <option value="wss://">wss://</option>
-            </select>
+            <Input />
           </Form.Item>
         </Col>
         <Col span={8}>
-          <Form.Item required label="Host" name="host">
-            <Input placeholder="required" required name="host" value={state.host} />
+          <Form.Item
+            label="Port"
+            name="port"
+          >
+            <Input />
           </Form.Item>
         </Col>
         <Col span={8}>
-          <Form.Item label="Port" required name="port">
-            <Input placeholder="required" required name="port" value={state.port} />
-          </Form.Item>
-        </Col>
-
-        <Col span={8}>
-          <Form.Item label="Path" name="path">
-            <Input name="path" value={state.path} />
-          </Form.Item>
-        </Col>
-
-        <Col span={8}>
-          <Form.Item label="Client ID" required name="clientId">
-            <Input placeholder="required" name="clientId" value={state.clientId} />
+          <Form.Item
+            label="Client ID"
+            name="clientId"
+          >
+            <Input />
           </Form.Item>
         </Col>
         <Col span={8}>
-          <Form.Item label="Username" name="username">
-            <Input required name="username" value={state.username} />
+          <Form.Item
+            label="Username"
+            name="username"
+          >
+            <Input />
           </Form.Item>
         </Col>
         <Col span={8}>
-          <Form.Item label="Password" name="password">
-            <Input id="password" name="password" value={state.password} />
-          </Form.Item>
-        </Col>
-        <Col span={8}>
-          <Form.Item label="msg size" name="message_size">
-            <InputNumber
-              name="messageSize"
-              min={1}
-              max={1000}
-              value={state.messageSize}
-            />
-          </Form.Item>
-        </Col>
-        <Col span={8}>
-          <Form.Item label="SSL/TLS" name="ssl_tls">
-            <Radio.Group value={state.ssl_tls} name="ssl_tls">
-              <Radio value="true">True</Radio>
-              <Radio value="false">False</Radio>
-            </Radio.Group>
+          <Form.Item
+            label="Password"
+            name="password"
+          >
+            <Input />
           </Form.Item>
         </Col>
       </Row>
     </Form>
-  );
+  )
 
   return (
     <Card
       title="Connection"
       actions={[
-        <Button type="primary" htmlType="submit" onClick={handleSubmit}>
-          {connectBtn}
-        </Button>,
-        <Button id="danger-button" danger>
-          Disconnect
-        </Button>,
+        <Button type="primary" onClick={handleConnect}>{connectBtn}</Button>,
+        <Button id="danger-button" danger onClick={handleDisconnect}>Disconnect</Button>
       ]}
     >
       {ConnectionForm}
     </Card>
   );
-};
+}
 
 export default Connection;

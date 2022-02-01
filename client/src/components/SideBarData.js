@@ -1,8 +1,7 @@
 import React from "react";
 import * as AiIcons from "react-icons/ai";
-import * as IoIcons from "react-icons/io";
-// import * as FaIcons from "react-icons/fa";
 import * as MdIcons from "react-icons/md";
+import * as ImIcons from "react-icons/im";
 
 
 export const SideBarData = [
@@ -19,15 +18,9 @@ export const SideBarData = [
     className: "nav-text",
   },
   {
-    title: "Report",
-    path: "/reports",
-    icon: <IoIcons.IoIosPaper />,
+    title: "Test Bench",
+    path: "/testconnection",
+    icon: <ImIcons.ImConnection />,
     className: "nav-text",
   },
-  // {
-  //   title: "Messages",
-  //   path: "/messages",
-  //   icon: <FaIcons.FaEnvelopeOpenText />,
-  //   className: "nav-text",
-  // }
 ];

@@ -19,6 +19,7 @@ function NavBar() {
             <Link to='#' className='menu-bars'>
               <FaIcons.FaBars onClick={showSidebar} />
             </Link>
+            <h1 id='heading'>MQTT BROKER</h1>
           </div>
           <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
             <ul className='nav-menu-items'>

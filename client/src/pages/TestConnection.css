@@ -1,0 +1,109 @@
+@import "~antd/dist/antd.css";
+
+.testconnection {
+  background-color: #3333338e;
+  min-height: 100vh;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  position: relative;
+  margin-left: 310px;
+  top: 80px;
+  border-radius: 0px;
+  left: -60px;
+}
+
+.ant-select-selector{
+  padding: 0 !important;
+}
+
+.ant-input-number{
+  max-width: 80px;
+}
+#basic_message_size{
+  max-width: 80px;
+}
+.ant-btn-primary span{
+  margin-left: 0;
+}
+.ant-btn-dangerous span{
+  margin-left: 0;
+}
+#publisher-qos,#subscriber-qos{
+  width: 30%;
+}
+#password{
+-webkit-text-security: disc;
+}
+.testconnection .ant-card-body {
+  width: 100%;
+  max-width: 850px;
+  margin-bottom: 20px;
+  background-color: white;
+  border-radius: 30px;
+}
+
+.ant-card-actions {
+  border-radius: 30px;
+  border: none;
+}
+
+.ant-card-actions li {
+  border: none;
+}
+
+.ant-form-inline .ant-form-item {
+  margin-bottom: 20px;
+}
+
+.ant-list-item-meta-description {
+  color: rgba(19, 3, 3, 0.651);
+}
+
+li.ant-list-item {
+  border: none;
+  background-color: white;
+}
+
+.ant-card-head-title {
+  font-size: 20px;
+}
+#danger-button {
+  background-color: rgb(255, 0, 0);
+  color: rgb(255, 255, 255);
+}
+
+#danger-button:hover {
+  background: rgba(221, 4, 4, 0.918);
+  color: white;
+}
+
+.ant-select-selection-item {
+  padding-right: 0 !important;
+}
+.ant-input {
+  color: brown;
+  font-family: sans-serif;
+}
+
+@media(max-width: 800px) {
+  .testconnection {
+    top: 350px;
+    width:450px;
+    margin: 0 auto;
+    left: 5px;
+    width: 100%;
+  }
+}
+
+@media(max-width: 550px) {
+  .testconnection{
+     left:-5px;
+    width: 500px;
+    margin: 0 auto;
+    top:240px;
+  }
+  }
