@@ -1,7 +1,7 @@
 
 const aedes = require('aedes')();
 const server = require('aedes-server-factory').createServer(aedes, {
-    ws: false,
+    ws: true,
     mqtt:true,
     tcp:false,
   });
