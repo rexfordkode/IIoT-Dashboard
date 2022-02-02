@@ -182,6 +182,13 @@ export const TestConnection = () => {
       });
     }
   }, [client]);
+  //Starter use state
+ const [starter, setStarter] = useState('Start');
+ useEffect(()=>{
+   if(starter){
+     setStarter({response: {}})
+   }
+ })
 
   const mqttDisconnect = () => {
     if (client) {
@@ -191,6 +198,11 @@ export const TestConnection = () => {
     }
   };
 const handleStart = () =>{
+  fetch.apply('/broker')
+  .then(res => res.json())
+  .then(res => {
+    this.useState({response: res});
+  })
   
 }
   const handleConnect = () => {
@@ -211,7 +223,7 @@ const handleStart = () =>{
           <Button onClick={handleDisconnect} id="danger-button" danger>
             Disconnect
           </Button>,
-          <Button id="start-button">
+          <Button id="start-button" onClick={handleStart}>
             Start
           </Button>,
         ]}
