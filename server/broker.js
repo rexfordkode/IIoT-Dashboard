@@ -18,16 +18,19 @@ const brokerPort = 1883;
 const port = process.env.PORT || 5000
 
 app.post('/broker',(res, req) =>{
-    server.listen(port, function () {
-        console.log(`MQTT Broker running on port: ${port}`);
+    server.listen(brokerPort, function () {
+        console.log(`MQTT Broker running on port: ${brokerPort}`);
     });
 })
 
 if(process.env.MODE_ENV==='production'){
-    app.use(express.static('build'));
-    app.get('*',(req, res) =>{
-        req.sendFile(path.resolve(__dirname,'build','index.html'))
-    })
+    // Serve any static files
+  app.use(express.static(path.join(__dirname, '/client/build')));
+
+  // Handle React routing, return all requests to React app
+  app.get('*', function(req, res) {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+  });
 }
 // emitted when a client connects to the broker
 aedes.on('client', function (client) {
@@ -55,3 +58,19 @@ aedes.on('publish', async function (packet, client) {
         console.log(`[MESSAGE_PUBLISHED] Client ${(client ? client.id : 'BROKER_' + aedes.id)} has published message on ${packet.topic} to broker ${aedes.id}`)
     }
 })
+
+
+// ** MIDDLEWARE ** //
+const whitelist = ['http://localhost:3000', 'http://localhost:5000', 'https://git.heroku.com/iiot-test-bench.git']
+const cors = {
+  origin: function (origin, callback) {
+    console.log("** Origin of request " + origin)
+    if (whitelist.indexOf(origin) !== -1 || !origin) {
+      console.log("Origin acceptable")
+      callback(null, true)
+    } else {
+      console.log("Origin rejected")
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
