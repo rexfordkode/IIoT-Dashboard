@@ -11,6 +11,7 @@ import {
   InputNumber,
   Select,
 } from "antd";
+import axios from 'axios';
 import mqtt from "mqtt/dist/mqtt";
 import "./TestConnection.css";
 
@@ -189,7 +190,9 @@ export const TestConnection = () => {
       });
     }
   };
-
+const handleStart = () =>{
+  
+}
   const handleConnect = () => {
     form.submit();
   };
