@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Reports from './Reports'
-import axios from 'axios';
 import {
   Radio,
   Card,
@@ -14,7 +13,6 @@ import {
 } from "antd";
 import mqtt from "mqtt/dist/mqtt";
 import "./TestConnection.css";
-import { url } from "inspector";
 
 export const TestConnection = () => {
   const [form] = Form.useForm();
@@ -168,7 +166,6 @@ export const TestConnection = () => {
 
   const [client, setClient] = useState(null);
   const [connectStatus, setConnectStatus] = useState("Test Connection");
-  // const [post, setPost] = useState(null)
 
   useEffect(() => {
     if (client) {
@@ -183,9 +180,7 @@ export const TestConnection = () => {
         setConnectStatus("Reconnecting");
       });
     }
-    
   }, [client]);
-
 
   const mqttDisconnect = () => {
     if (client) {
@@ -200,17 +195,9 @@ export const TestConnection = () => {
   };
   //This submit button 
   // Start===================================================
-    // const handleStart = () =>{
-     
-    //    // POST request using fetch with async/await
-    //    const requestOptions = {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify({ title: 'Broker Start' })
-    // };
-    // const response = await fetch('http://localhost:5000/broker', requestOptions);
-      
-    // }
+    const handleStart = () =>{
+
+    }
   // End===============================
   const handleDisconnect = () => {
     mqttDisconnect();
@@ -227,8 +214,8 @@ export const TestConnection = () => {
           <Button onClick={handleDisconnect} id="danger-button" danger>
             Disconnect
           </Button>,
-          <Button id="start-button" >
-            Start 
+          <Button id="start-button" onClick={handleStart}>
+            Start
           </Button>,
         ]}
       >

@@ -7,7 +7,7 @@ const aedes = require('aedes')();
 const server = require('aedes-server-factory').createServer(aedes, {
   ws: true,
   mqtt:true,
-    tcp:true,
+    tcp:false,
 });
 const brokerPort = 1883;
 // const ws = require('websocket-stream')
@@ -20,7 +20,6 @@ if(process.env.NODE_ENV ==='production'){
     res.sendFile(path.resolve(__dirname,'client','build', 'index.html',))
   })
 }
-
 
   aedes.authenticate = (client, username, password, callback) => {
       password = Buffer.from(password, 'base64').toString();
