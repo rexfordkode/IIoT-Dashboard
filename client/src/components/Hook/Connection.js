@@ -6,7 +6,7 @@ const Connection = ({ connect, disconnect, connectBtn }) => {
   const record = {
     host: 'broker.emqx.io',
     clientId: `mqttjs_ + ${Math.random().toString(16).substr(2, 8)}`,
-    port: 8083,
+    port: 1883,
   };
   const onFinish = (values) => {
     const { host, clientId, port, username, password } = values;

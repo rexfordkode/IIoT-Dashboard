@@ -182,13 +182,15 @@ export const TestConnection = () => {
       });
     }
   }, [client]);
+
+  
   //Starter use state
  const [starter, setStarter] = useState('Start');
  useEffect(()=>{
    if(starter){
      setStarter({response: {}})
    }
- })
+ },[starter])
 
   const mqttDisconnect = () => {
     if (client) {
