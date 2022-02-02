@@ -1,17 +1,27 @@
 const express = require("express")
+const bodyParser = require('body-parser')
+const cors = require('cors')
+const path = require('path'
+)
 const aedes = require('aedes')();
 const server = require('aedes-server-factory').createServer(aedes, {
   ws: true,
+  mqtt:true,
+    tcp:true,
 });
 const brokerPort = 1883;
-
-const port = process.env.PORT || 5005;
+// const ws = require('websocket-stream')
+const port = process.env.PORT || 5000;
 const app = express(); 
 
+if(process.env.NODE_ENV ==='production'){
+  app.use(express.static('client/static'))
+  app.get('*',(res,req) =>{
+    res.sendFile(path.resolve(__dirname,'client','build', 'index.html',))
+  })
+}
 
-server.listen(port, () =>{
-    console.log('Broker Server started and connected on port ', brokerPort, 'pid', process.pid);
-  }); 
+
   aedes.authenticate = (client, username, password, callback) => {
       password = Buffer.from(password, 'base64').toString();
       if (username === 'username' && password === 'password') {
@@ -23,14 +33,27 @@ server.listen(port, () =>{
   }
 
 //   // create a GET route
-app.get('/Testbench/server', (req, res) => { //Line 9
+app.post('/Testbench/server', (req, res) => { //Line 9
     aedes.on('client',  (client) => {
         res.send({ express: 'Connected' }); 
-        console.log(`Client connected with client  ${(client ? client.id : client)} connected to broker ${aedes.id}`)
+        // console.log(`Client connected with client  ${(client ? client.id : client)} connected to broker ${aedes.id}`)
     })
     
-
   }); 
+
+  ///This code bellow start the Broker Server
+  app.get('/broker', (req, res) => { //Line 9
+    server.listen(brokerPort, () =>{
+      console.log('Broker Server started and connected on port ', brokerPort, 'pid', process.pid);
+    }); 
+    
+
+  });
+  app.get('/Testbench/testpub',(req, res) =>{
+    aedes.publish('publish',(client) =>{
+      
+    })
+  })
 
   app.listen(port, ()=> console.log(`Listening on port ${port}`));
 

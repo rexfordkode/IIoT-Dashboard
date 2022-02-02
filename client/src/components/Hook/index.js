@@ -25,6 +25,9 @@ const MqttDashboard = () => {
   const [payload, setPayload] = useState({});
   const [connectStatus, setConnectStatus] = useState('Connect');
 
+
+  //This code is to connect a client to a broker
+  // Start=========================================
   const mqttConnect = (host, mqttOption) => {
     setConnectStatus('Connecting');
     setClient(mqtt.connect(host, mqttOption));
@@ -48,7 +51,10 @@ const MqttDashboard = () => {
       });
     }
   }, [client]);
+// End=========================================
 
+// This is to disconnect the user from the broker
+// Start ===================================
   const mqttDisconnect = () => {
     if (client) {
       client.end(() => {
@@ -56,7 +62,11 @@ const MqttDashboard = () => {
       });
     }
   }
+  // End========================================
 
+  // The code is to allow a client to publish message to the client to be distributed to the subscribe client
+
+  // Start===================================
   const mqttPublish = (context) => {
     if (client) {
       const { topic, qos, payload } = context;
@@ -67,7 +77,10 @@ const MqttDashboard = () => {
       });
     }
   }
+// End================================
 
+//This is the Subscription code
+// Start=======================
   const mqttSub = (subscription) => {
     if (client) {
       const { topic, qos } = subscription;
@@ -80,7 +93,7 @@ const MqttDashboard = () => {
       });
     }
   };
-
+// End ====================================
   const mqttUnSub = (subscription) => {
     if (client) {
       const { topic } = subscription;

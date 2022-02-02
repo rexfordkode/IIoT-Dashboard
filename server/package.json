@@ -5,7 +5,10 @@
   "description": "Test Bench Dashboard for IIoT",
   "main": "connection.js",
   "scripts": {
-    "start": "node routes/index.js"
+    "start": "node routes/index.js",
+    "serve": "nodemon broker.js",
+    "client": "npm start",
+    "dev":"concurrently \"npm run server"
   },
   "repository": {
     "type": "git",
