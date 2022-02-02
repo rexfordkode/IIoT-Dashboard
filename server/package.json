@@ -5,9 +5,10 @@
   "description": "Test Bench Dashboard for IIoT",
   "main": "connection.js",
   "scripts": {
+    "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build ",
     "start": "node routes/index.js",
     "serve": "nodemon broker.js",
-    "client": "npm start",
+    "client": "node broker.js",
     "dev":"concurrently \"npm run server"
   },
   "repository": {

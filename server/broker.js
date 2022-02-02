@@ -23,7 +23,12 @@ app.post('/broker',(res, req) =>{
     });
 })
 
-if(process.env.MODE_ENV==='production')
+if(process.env.MODE_ENV==='production'){
+    app.use(express.static('build'));
+    app.get('*',(req, res) =>{
+        req.sendFile(path.resolve(__dirname,'build','index.html'))
+    })
+}
 // emitted when a client connects to the broker
 aedes.on('client', function (client) {
     console.log(`User coneected Client ${(client ? client.id : client)} connected to broker ${aedes.id}`)
