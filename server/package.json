@@ -39,7 +39,8 @@
     "net": "^1.0.2",
     "nodemon": "^2.0.15",
     "request": "^2.88.2",
-    "reusify": "^1.0.4"
+    "reusify": "^1.0.4",
+    
   },
   "devDependencies": {
     "uuid": "^8.3.2"

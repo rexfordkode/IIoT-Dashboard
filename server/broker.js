@@ -1,3 +1,12 @@
+const express = require('express');
+const cors = require('cors');
+
+const app = express();
+
+const PORT = 5000;
+
+
+app.use(cors())
 
 const aedes = require('aedes')();
 const server = require('aedes-server-factory').createServer(aedes, {
@@ -5,12 +14,16 @@ const server = require('aedes-server-factory').createServer(aedes, {
     mqtt:true,
     tcp:false,
   });
-const port = 1883;
+const brokerPort = 1883;
+const port = process.env.PORT || 5000
 
-server.listen(port, function () {
-    console.log(`MQTT Broker running on port: ${port}`);
-});
+app.post('/broker',(res, req) =>{
+    server.listen(port, function () {
+        console.log(`MQTT Broker running on port: ${port}`);
+    });
+})
 
+if(process.env.MODE_ENV==='production')
 // emitted when a client connects to the broker
 aedes.on('client', function (client) {
     console.log(`User coneected Client ${(client ? client.id : client)} connected to broker ${aedes.id}`)

@@ -19,9 +19,9 @@ export const TestConnection = () => {
   const { Option } = Select;
 
   const record = {
-    host: "localhost",
-    clientId: `amtCid + ${Math.random().toString(6).substr(2, 3)}`,
-    port: 1883,
+    host: "broker.emqx.io",
+    clientId: `mqttjs_ + ${Math.random().toString(16).substr(2, 8)}`,
+    port: 8083,
     message_size: 1,
     protocol: "mqtt://",
     path: "",
@@ -193,12 +193,6 @@ export const TestConnection = () => {
   const handleConnect = () => {
     form.submit();
   };
-  //This submit button 
-  // Start===================================================
-    const handleStart = () =>{
-
-    }
-  // End===============================
   const handleDisconnect = () => {
     mqttDisconnect();
   };
@@ -214,7 +208,7 @@ export const TestConnection = () => {
           <Button onClick={handleDisconnect} id="danger-button" danger>
             Disconnect
           </Button>,
-          <Button id="start-button" onClick={handleStart}>
+          <Button id="start-button">
             Start
           </Button>,
         ]}
