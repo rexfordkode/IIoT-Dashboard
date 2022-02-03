@@ -199,12 +199,12 @@ export const TestConnection = () => {
       });
     }
   };
-const handleStart = () =>{
-  fetch.apply('/broker')
-  .then(res => res.json())
-  .then(res => {
-    this.useState({response: res});
-  })
+const handleStart = async() =>{
+try {
+   fetch('http://localhost:5000/broker');
+} catch (err) {
+  console.error(err.message);
+}
   
 }
   const handleConnect = () => {

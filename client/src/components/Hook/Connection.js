@@ -4,8 +4,8 @@ import { Card, Button, Form, Input, Row, Col } from "antd";
 const Connection = ({ connect, disconnect, connectBtn }) => {
   const [form] = Form.useForm();
   const record = {
-    host: 'broker.emqx.io',
-    clientId: `mqttjs_ + ${Math.random().toString(16).substr(2, 8)}`,
+    host: 'localhost',
+    clientId: `mqtt_ + ${Math.random().toString(16).substr(2, 8)}`,
     port: 1883,
   };
   const onFinish = (values) => {
@@ -19,7 +19,7 @@ const Connection = ({ connect, disconnect, connectBtn }) => {
       reconnectPeriod: 1000,
       connectTimeout: 30 * 1000,
       will: {
-        topic: 'WillMsg',
+        topic: 'testtopic/react',
         payload: 'Connection Closed abnormally..!',
         qos: 0,
         retain: false

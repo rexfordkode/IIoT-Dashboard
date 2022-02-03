@@ -9,7 +9,7 @@
     "start": "node routes/index.js",
     "serve": "nodemon broker.js",
     "client": "node broker.js",
-    "dev":"concurrently \"npm run server"
+    "dev": "concurrently \"npm run server"
   },
   "repository": {
     "type": "git",
@@ -36,12 +36,12 @@
     "morgan": "^1.10.0",
     "mqemitter-redis": "^4.2.0",
     "mqtt": "^4.3.4",
+    "mqtt-benchmark": "^1.0.3",
     "mqtt-connection": "^4.1.0",
     "net": "^1.0.2",
     "nodemon": "^2.0.15",
     "request": "^2.88.2",
     "reusify": "^1.0.4"
-    
   },
   "devDependencies": {
     "uuid": "^8.3.2"
