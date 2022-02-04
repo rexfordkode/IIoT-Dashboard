@@ -5,11 +5,12 @@ const Connection = ({ connect, disconnect, connectBtn }) => {
   const [form] = Form.useForm();
   const record = {
     host: 'localhost',
-    clientId: `mqtt_ + ${Math.random().toString(16).substr(2, 8)}`,
+    clientId: `AmtID+ ${Math.random().toString(16).substr(2, 8)}`,
     port: 1883,
+    maximumPacketSize: 1
   };
   const onFinish = (values) => {
-    const { host, clientId, port, username, password } = values;
+    const { host, clientId, port, username, password, maximumPacketSize } = values;
     const url = `ws://${host}:${port}/mqtt`;
     const options = {
       keepalive: 30,
@@ -24,11 +25,17 @@ const Connection = ({ connect, disconnect, connectBtn }) => {
         qos: 0,
         retain: false
       },
-      rejectUnauthorized: false
+      rejectUnauthorized: false,
+      properties:{
+        maximumPacketSize: 1024,
+        topicAliasMaximum: 100,
+        receiveMaximum: 10
+      }
     };
     options.clientId = clientId;
     options.username = username;
     options.password = password;
+    options.properties.maximumPacketSize = maximumPacketSize;
     connect(url, options);
   };
 
@@ -85,6 +92,14 @@ const Connection = ({ connect, disconnect, connectBtn }) => {
           <Form.Item
             label="Password"
             name="password"
+          >
+            <Input />
+          </Form.Item>
+        </Col>
+        <Col span={8}>
+          <Form.Item
+            label="Message Size"
+            name="maximumPacketSize"
           >
             <Input />
           </Form.Item>
