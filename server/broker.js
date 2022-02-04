@@ -4,7 +4,6 @@ const app = express();
 const path = require('path')
 const PORT = 5000;
 const mqtt = require('mqtt')
-const mqttcon = require('mqtt-connection')
 const mqttBench = require('mqtt-benchmark')
 const stats = require('aedes-stats');
 const { default: aedesMemoryPersistence } = require('aedes-persistence');
@@ -36,27 +35,7 @@ app.get('/broker',(req, res) =>{
 })
 app.use(express.static(path.join(__dirname, '/client/build')));
 
-// // emitted when a client connects to the broker
-// aedes.on('client',  (client) =>{
-//     console.log(`User connected ID ${(client ? client.id : client)} to broker ${aedes.id}`)
-// })
 
-// // emitted when a client disconnects from the broker
-// aedes.on('clientDisconnect',  (client)=> {
-//     console.log(`Client Disconnected with ID ${(client ? client.id : client)} disconnected from the broker ${aedes.id}`)
-// })
-
-// // emitted when a client subscribes to a message topic
-// aedes.on('subscribe',  (subscriptions, client) =>{
-//     console.log(`Topic Subscribe Client ${(client ? client.id : client)} subscribed to topics: ${subscriptions.map(s => s.topic).join(',')} on broker ${aedes.id}`)
-// })
-
-// // emitted when a client unsubscribes from a message topic
-// aedes.on('unsubscribe',  (subscriptions, client) =>{
-//     console.log(`Topic Unsubscribe Client ${(client ? client.id : client)} unsubscribed to topics: ${subscriptions.join(',')} from broker ${aedes.id}`)
-// })
-
-// emitted when a client publishes a message packet on the topic
 aedes.on('publish', async  (packet, client)=> {
     if (client) {
         console.log(`The message published Client ${(client ? client.id : 'BROKER_' + aedes.id)} has published message on ${packet.topic} to broker ${aedes.id} ${client.stats}`)
@@ -65,6 +44,7 @@ aedes.on('publish', async  (packet, client)=> {
 
 // mqttBench.console()
 
+//The bellow code listen to port and can also start the broker on the call back function
 app.listen(port, ()=> {
   console.log('server started')
   server.listen(brokerPort, function () {
