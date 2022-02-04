@@ -20,9 +20,9 @@ export const TestConnection = () => {
   const { Option } = Select;
 
   const record = {
-    host: "broker.emqx.io",
-    clientId: `mqttjs_ + ${Math.random().toString(16).substr(2, 8)}`,
-    port: 8083,
+    host: "",
+    clientId: `AmtId${Math.random().toString(8).substr(2, 5)}`,
+    port: 1883,
     message_size: 1,
     protocol: "mqtt://",
     path: "",
@@ -55,7 +55,7 @@ export const TestConnection = () => {
         reconnectPeriod: 1000,
         connectTimeout: 30 * 1000,
         will: {
-          topic: "WillMsg",
+          topic: "testtopic/react",
           payload: "Connection Closed abnormally..!",
           qos: 0,
           retain: false,
