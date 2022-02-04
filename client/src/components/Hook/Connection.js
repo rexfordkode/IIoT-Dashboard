@@ -5,7 +5,7 @@ const Connection = ({ connect, disconnect, connectBtn }) => {
   const [form] = Form.useForm();
   const record = {
     host: 'localhost',
-    clientId: `AmtID+ ${Math.random().toString(16).substr(2, 8)}`,
+    clientId: `AmtId${Math.random().toString(7).substr(2, 8)}`,
     port: 1883,
     maximumPacketSize: 1
   };

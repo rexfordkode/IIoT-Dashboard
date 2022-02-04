@@ -24,7 +24,7 @@ const Receiver = ({ payload }) => {
       title="Receiver"
     >
       <List
-        size="small"
+        size="medium"
         bordered
         dataSource={messages}
         renderItem={renderListItem}
