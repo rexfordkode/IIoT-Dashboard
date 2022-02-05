@@ -5,9 +5,9 @@ const Connection = ({ connect, disconnect, connectBtn }) => {
   const [form] = Form.useForm();
   const record = {
     host: 'broker.emqx.io',
-    clientId: `mqttjs_ + ${Math.random().toString(16).substr(2, 8)}`,
+    clientId: `AmtId-${Math.random().toString(6).substr(2, 4)}`,
     port: 8083,
-    maximumPacketSize: 1
+    maximumPacketSize: 1024
   };
   const onFinish = (values) => {
     const { host, clientId, port, username, password , maximumPacketSize} = values;
@@ -20,7 +20,7 @@ const Connection = ({ connect, disconnect, connectBtn }) => {
       reconnectPeriod: 1000,
       connectTimeout: 30 * 1000,
       will: {
-        topic: 'WillMsg',
+        topic: 'will/msg',
         payload: 'Connection Closed abnormally..!',
         qos: 0,
         retain: false
@@ -35,6 +35,7 @@ const Connection = ({ connect, disconnect, connectBtn }) => {
     options.clientId = clientId;
     options.username = username;
     options.password = password;
+    options.properties.maximumPacketSize = maximumPacketSize
     connect(url, options);
   };
 
@@ -59,6 +60,7 @@ const Connection = ({ connect, disconnect, connectBtn }) => {
           <Form.Item
             label="Host"
             name="host"
+            placeholder="Enter Host"
           >
             <Input />
           </Form.Item>
@@ -67,6 +69,7 @@ const Connection = ({ connect, disconnect, connectBtn }) => {
           <Form.Item
             label="Port"
             name="port"
+            placeholder="8083"
           >
             <Input />
           </Form.Item>
@@ -91,6 +94,14 @@ const Connection = ({ connect, disconnect, connectBtn }) => {
           <Form.Item
             label="Password"
             name="password"
+          >
+            <Input />
+          </Form.Item>
+        </Col>
+        <Col span={8}>
+          <Form.Item
+            label="Message Size"
+            name="maximumPacketSize"
           >
             <Input />
           </Form.Item>
