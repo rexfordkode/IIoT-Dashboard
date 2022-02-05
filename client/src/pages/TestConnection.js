@@ -11,7 +11,6 @@ import {
   InputNumber,
   Select,
 } from "antd";
-import axios from 'axios';
 import mqtt from "mqtt/dist/mqtt";
 import "./TestConnection.css";
 
@@ -20,9 +19,9 @@ export const TestConnection = () => {
   const { Option } = Select;
 
   const record = {
-    host: "",
-    clientId: `AmtId${Math.random().toString(8).substr(2, 5)}`,
-    port: 1883,
+    host: "broker.emqx.io",
+    clientId: `mqttjs_ + ${Math.random().toString(16).substr(2, 8)}`,
+    port: 8083,
     message_size: 1,
     protocol: "mqtt://",
     path: "",
@@ -55,7 +54,7 @@ export const TestConnection = () => {
         reconnectPeriod: 1000,
         connectTimeout: 30 * 1000,
         will: {
-          topic: "testtopic/react",
+          topic: "WillMsg",
           payload: "Connection Closed abnormally..!",
           qos: 0,
           retain: false,
@@ -183,15 +182,6 @@ export const TestConnection = () => {
     }
   }, [client]);
 
-  
-  //Starter use state
- const [starter, setStarter] = useState('Start');
- useEffect(()=>{
-   if(starter){
-     setStarter({response: {}})
-   }
- },[starter])
-
   const mqttDisconnect = () => {
     if (client) {
       client.end(() => {
@@ -199,14 +189,7 @@ export const TestConnection = () => {
       });
     }
   };
-const handleStart = async() =>{
-try {
-   fetch('http://localhost:5000/broker');
-} catch (err) {
-  console.error(err.message);
-}
-  
-}
+
   const handleConnect = () => {
     form.submit();
   };
@@ -225,7 +208,7 @@ try {
           <Button onClick={handleDisconnect} id="danger-button" danger>
             Disconnect
           </Button>,
-          <Button id="start-button" onClick={handleStart}>
+          <Button id="start-button">
             Start
           </Button>,
         ]}
