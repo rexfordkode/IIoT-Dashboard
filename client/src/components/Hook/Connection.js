@@ -7,11 +7,11 @@ const Connection = ({ connect, disconnect, connectBtn }) => {
     host: 'broker.emqx.io',
     clientId: `AmtId-${Math.random().toString(6).substr(2, 4)}`,
     port: 8083,
-    maximumPacketSize: 1024
+    maximumPacketSize: "1mb"
   };
   const onFinish = (values) => {
     const { host, clientId, port, username, password , maximumPacketSize} = values;
-    const url = `ws://${host}:${port}/mqtt`;
+    const url = `ws://${host}:${port}`;
     const options = {
       keepalive: 30,
       protocolId: 'MQTT',
