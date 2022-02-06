@@ -11,7 +11,7 @@ const Connection = ({ connect, disconnect, connectBtn }) => {
   };
   const onFinish = (values) => {
     const { host, clientId, port, username, password , maximumPacketSize} = values;
-    const url = `ws://${host}:${port}`;
+    const url = `ws://${host}:${port}/`;
     const options = {
       keepalive: 30,
       protocolId: 'MQTT',
@@ -26,7 +26,7 @@ const Connection = ({ connect, disconnect, connectBtn }) => {
         retain: false
       },
       properties:{
-        maximumPacketSize: 1024,
+        maximumPacketSize: 0,
         topicAliasMaximum: 100,
         receiveMaximum: 10
       },
