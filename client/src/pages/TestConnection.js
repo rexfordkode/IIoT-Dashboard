@@ -40,12 +40,12 @@ export const TestConnection = () => {
     setClient(mqtt.connect(host, mqttOption));
   };
   const onFinish = (values) => {
-    const { name, host, clientId, port } = values;
-    if (name === "" || host === "" || clientId === "" || port === "") {
+    const { name, host, clientId, port , protocol} = values;
+    if (name === "" || host === "" || clientId === "" || port === "" ||protocol=="") {
       // console.log('Good catch')
       alert("All required fields must be filled");
     } else {
-      const url = `ws://${host}:${port}/mqtt`;
+      const url = `${protocol}${host}:${port}`;
       const options = {
         keepalive: 30,
         protocolId: "MQTT",
@@ -62,9 +62,24 @@ export const TestConnection = () => {
         rejectUnauthorized: false,
       };
       mqttConnect(url, options);
-      console.log(values);
+    
     }
   };
+    // This submit button 
+  // Start===================================================
+    const handleStart = () =>{
+      //Proxy
+     
+       // POST request using fetch with async/await
+       const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title: 'Broker Start' })
+    };
+    const response = await fetch('/broker', requestOptions);
+      
+    }
+  // End===============================
 
   const ConnectionForm = (
     <Form
@@ -85,7 +100,6 @@ export const TestConnection = () => {
           <Form.Item label="Protocol" name="protocol">
             <select name="protocol">
               <option value="mqtt://">mqtt://</option>
-              <option value="mqtts://">mqtts://</option>
               <option value="ws://">ws://</option>
               <option value="wss://">wss://</option>
             </select>

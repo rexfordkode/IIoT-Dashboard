@@ -1,12 +1,16 @@
 {
   "name": "server",
-  "proxy": "http://localhost:4000/",
+  "proxy": "http://localhost:5000/",
   "version": "1.0.0",
   "description": "Test Bench Dashboard for IIoT",
-  "main": "connection.js",
+  "main": "broker.js",
+  "engine": {
+    "node": "16.13.1",
+    "npm": "8.1.2"
+  },
   "scripts": {
-    "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build ",
-    "start": "node routes/index.js",
+    "heroku-postbuild": "cd client && npm install && npm run build --only=dev ",
+    "start": "node broker.js",
     "serve": "nodemon broker.js",
     "client": "node broker.js",
     "dev": "concurrently \"npm run server"
