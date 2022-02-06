@@ -20,7 +20,7 @@ export const TestConnection = () => {
 
   const record = {
     host: "broker.emqx.io",
-    clientId: `mqttjs_ + ${Math.random().toString(16).substr(2, 8)}`,
+    clientId: `AmtId${Math.random().toString(16).substr(2, 8)}`,
     port: 8083,
     message_size: 1,
     protocol: "mqtt://",
@@ -68,16 +68,12 @@ export const TestConnection = () => {
     // This submit button 
   // Start===================================================
     const handleStart = () =>{
-      //Proxy
-     
        // POST request using fetch with async/await
        const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title: 'Broker Start' })
     };
-
-      
     }
   // End===============================
 
