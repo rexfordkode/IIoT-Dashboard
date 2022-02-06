@@ -76,7 +76,7 @@ export const TestConnection = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title: 'Broker Start' })
     };
-    const response = await fetch('/broker', requestOptions);
+
       
     }
   // End===============================
